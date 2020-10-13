@@ -25,9 +25,9 @@ function draw() {
     background(30);
 
     //! TESTING
-    logic.activeTetri(testActive);
-
+    //* Has to ckeck board before updating the tetri
     logic.checkBoard();
+    logic.activeTetri(testActive);
 }
 
 function keyPressed() {
@@ -39,6 +39,7 @@ function keyPressed() {
         else {
             logic.rotation = 4;
         }
+        logic.checkOutOfBounds();
     }
     else if (keyCode === RIGHT_ARROW) {
         // Rotate right;
@@ -48,6 +49,9 @@ function keyPressed() {
         else {
             logic.rotation = 1;
         }
+    }
+    else if (keyCode === DOWN_ARROW) {
+        logic.activeRow++;
     }
     console.log(logic.activeCol);
 }

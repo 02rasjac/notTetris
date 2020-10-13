@@ -17,8 +17,8 @@ class Logic {
 
         // Rotation
         this.rotation = 1;
-        this.activeRow = 1;
-        this.activeCol = 1;
+        this.activeRow = 3;
+        this.activeCol = 3;
 
         // Create the board as an array
         this.reset();
@@ -33,8 +33,8 @@ class Logic {
         // this.board[0][5] = "6";
         // this.board[0][6] = "7";
 
-        console.log(this.board);
-        this.checkOutOfBounds();
+        //console.log(this.board);
+        //this.checkOutOfBounds();
     }
 
     /**
@@ -72,12 +72,9 @@ class Logic {
     }
 
     checkOutOfBounds() {
-        // TODO: USE MAP TO GET A 4*4 COPY OF THE ARRAY
-        let updatedArray = this.board.slice(this.activeRow-2, this.activeRow+2).map(function(row) {
-            return row.slice(this.activeCol-2, this.activeCol+2);
-        })
+        let cachedBoard = this.board.slice();
 
-        console.log(updatedArray);
+        console.log(cachedBoard);
     }
 
     /**
