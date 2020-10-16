@@ -4,6 +4,11 @@ class Logic {
     cachedBoard = [];
     blocks;
     rotation;
+
+    /**@var {float} speed the falling speed in blocks per seconds*/
+    speed = 1000;
+    timer = 0;
+
     constructor() {
         // An object to reference colors
         this.colors = {
@@ -60,9 +65,6 @@ class Logic {
         }
     }
 
-    checkOutOfBounds() {
-    }
-
     /**
      * Updates the active Tetrimino
      * 
@@ -104,6 +106,17 @@ class Logic {
         this.rotation = 1;
         //* CHANGE THIS TO THE CENTER WHEN READY
         this.activeTetri(tetri, 1, 4);
+    }
+
+    /**
+     * Let the tetrimino fall at normal speed
+     */
+    gravity() {
+        this.timer += deltaTime;
+        if (this.timer >= this.speed) {
+            this.activeRow++;
+            this.timer = 0;
+        }
     }
 
     /**

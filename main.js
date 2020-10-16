@@ -22,6 +22,7 @@ function draw() {
     //* Has to ckeck board before updating the tetri
     logic.checkBoard();
     logic.activeTetri(testActive);
+    logic.gravity();
 }
 
 function keyPressed() {
@@ -33,7 +34,6 @@ function keyPressed() {
         else {
             logic.rotation = 4;
         }
-        logic.checkOutOfBounds();
     }
     else if (keyCode === 68) {
         // Rotate right;
