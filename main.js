@@ -44,7 +44,16 @@ function keyPressed() {
             logic.rotation = 1;
         }
     }
-    else if (keyCode === 83) {
+    else if (keyCode === DOWN_ARROW) {
+        // Move down
         logic.activeRow++;
+    }
+    else if (keyCode === LEFT_ARROW) {
+        // Move left
+        logic.activeCol--;
+    }
+    else if (keyCode === RIGHT_ARROW) {
+        // Move right
+        logic.activeCol++;
     }
 }

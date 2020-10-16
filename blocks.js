@@ -38,6 +38,8 @@ class Blocks {
         else if (logic.activeCol > maxCol) {
             logic.activeCol = maxCol;
         }
+        console.log("Col: " + logic.activeCol + 
+                    "\nRow: " + logic.activeRow);
     }
 
     /**
