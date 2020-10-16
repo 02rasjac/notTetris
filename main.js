@@ -25,7 +25,7 @@ function draw() {
 }
 
 function keyPressed() {
-    if (keyCode === LEFT_ARROW) {
+    if (keyCode === 65) {
         // Rotate left;
         if (logic.rotation != 1) {
             logic.rotation--;
@@ -35,7 +35,7 @@ function keyPressed() {
         }
         logic.checkOutOfBounds();
     }
-    else if (keyCode === RIGHT_ARROW) {
+    else if (keyCode === 68) {
         // Rotate right;
         if (logic.rotation != 4) {
             logic.rotation++;
@@ -44,7 +44,7 @@ function keyPressed() {
             logic.rotation = 1;
         }
     }
-    else if (keyCode === DOWN_ARROW) {
+    else if (keyCode === 83) {
         logic.activeRow++;
     }
 }
