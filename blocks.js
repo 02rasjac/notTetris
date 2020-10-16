@@ -26,17 +26,29 @@ class Blocks {
     }
 
     /**
-     * Make a straight tetrimino
+     * Check if the tetrimino collided with the walls and set the active column to the smallest/largest it can be
      * 
-     * @param {int} row The position for the row in the array
-     * @param {int} col The position for the column in the array
-     * @param {int} tetrirotation Rotation (1=up, 2=right, 3=down, 4=left)
+     * @param {int} minCol The smalles column the tetrimino can have based on rotatino
+     * @param {int} maxCol The largest column the tetrimino can be in based on rotation
+     */
+    checkWallCollision(minCol, maxCol) {
+        if (logic.activeCol < minCol) {
+            logic.activeCol = minCol;
+        }
+        else if (logic.activeCol > maxCol) {
+            logic.activeCol = maxCol;
+        }
+    }
+
+    /**
+     * Make a straight tetrimino
      */
     i() {
         //this.updateActiveTetri();
         // Render 4 blocks
         if (logic.rotation == 1) {
             // If rotated up;
+            this.checkWallCollision(0, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*4";
             logic.board[logic.activeRow+1][logic.activeCol] = "*4";
             logic.board[logic.activeRow-1][logic.activeCol] = "*4";
@@ -45,7 +57,7 @@ class Blocks {
         }
         else if (logic.rotation == 2) {
             // If rotated right;
-            //logic.activeRow += 1;
+            this.checkWallCollision(2, 8);
             logic.board[logic.activeRow+1][logic.activeCol] = "*4";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*4";
             logic.board[logic.activeRow+1][logic.activeCol+1] = "*4";
@@ -53,7 +65,7 @@ class Blocks {
         }
         else if (logic.rotation == 3) {
             // If rotated down; 
-            //logic.activeCol -= 1;
+            this.checkWallCollision(1, 9);
             logic.board[logic.activeRow][logic.activeCol-1] = "*4";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*4";
             logic.board[logic.activeRow-1][logic.activeCol-1] = "*4";
@@ -61,6 +73,7 @@ class Blocks {
         }
         else if (logic.rotation == 4) {
             // If rotated left; 
+            this.checkWallCollision(2, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*4";
             logic.board[logic.activeRow][logic.activeCol-1] = "*4";
             logic.board[logic.activeRow][logic.activeCol+1] = "*4";
@@ -70,15 +83,12 @@ class Blocks {
 
     /**
      * Make a J-tetrimino
-     * 
-     * @param {int} row The position for the row in the array
-     * @param {int} col The position for the column in the array
-     * @param {int} tetrirotation Rotation (1=up, 2=right, 3=down, 4=left)
      */
     j() {
         // Render 4 blocks
         if (logic.rotation == 1) {
             // If rotated up;
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*3";
             logic.board[logic.activeRow][logic.activeCol-1] = "*3";
             logic.board[logic.activeRow-1][logic.activeCol-1] = "*3";
@@ -87,6 +97,7 @@ class Blocks {
         }
         else if (logic.rotation == 2) {
             // If rotated right;
+            this.checkWallCollision(0, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*3";
             logic.board[logic.activeRow-1][logic.activeCol] = "*3";
             logic.board[logic.activeRow-1][logic.activeCol+1] = "*3";
@@ -94,6 +105,7 @@ class Blocks {
         }
         else if (logic.rotation == 3) {
             // If rotated down; 
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*3";
             logic.board[logic.activeRow][logic.activeCol-1] = "*3";
             logic.board[logic.activeRow][logic.activeCol+1] = "*3";
@@ -101,6 +113,7 @@ class Blocks {
         }
         else if (logic.rotation == 4) {
             // If rotated left;
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*3";
             logic.board[logic.activeRow-1][logic.activeCol] = "*3";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*3";
@@ -110,15 +123,12 @@ class Blocks {
 
     /**
      * Make a L-tetrimino
-     * 
-     * @param {int} logic.activeRow The position for the logic.activeRow in the array
-     * @param {int} logic.activeCol The position for the logic.activeColumn in the array
-     * @param {int} logic.rotation Rotation (1=up, 2=right, 3=down, 4=left)
      */
     l() {
         // Render 4 blocks
         if (logic.rotation == 1) {
             // If rotated up;
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*7";
             logic.board[logic.activeRow][logic.activeCol-1] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol+1] = "*7";
@@ -127,6 +137,7 @@ class Blocks {
         }
         else if (logic.rotation == 2) {
             // If rotated right;
+            this.checkWallCollision(0, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol] = "*7";
             logic.board[logic.activeRow+1][logic.activeCol+1] = "*7";
@@ -134,6 +145,7 @@ class Blocks {
         }
         else if (logic.rotation == 3) {
             // If rotated down; 
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*7";
             logic.board[logic.activeRow][logic.activeCol-1] = "*7";
             logic.board[logic.activeRow][logic.activeCol+1] = "*7";
@@ -141,7 +153,7 @@ class Blocks {
         }
         else if (logic.rotation == 4) {
             // If rotated left; 
-            
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol-1] = "*7";
@@ -151,14 +163,11 @@ class Blocks {
 
     /**
      * Render a square tetrimino
-     * 
-     * @param {int} logic.activeRow The position for the logic.activeRow in the array
-     * @param {int} logic.activeCol The position for the logic.activeColumn in the array
-     * @param {int} logic.rotation Rotation (1=up, 2=right, 3=down, 4=left)
      */
     o() {
         //this.updateActiveTetri();
         // Render 4 blocks
+        this.checkWallCollision(1, 8);
         logic.board[logic.activeRow][logic.activeCol] = "*6";
         logic.board[logic.activeRow-1][logic.activeCol] = "*6";
         logic.board[logic.activeRow-1][logic.activeCol-1] = "*6";
@@ -167,15 +176,12 @@ class Blocks {
 
     /**
      * Make a S-tetrimino
-     * 
-     * @param {int} logic.activeRow The position for the logic.activeRow in the array
-     * @param {int} logic.activeCol The position for the logic.activeColumn in the array
-     * @param {int} logic.rotation Rotation (1=up, 2=right, 3=down, 4=left)
      */
     s() {
         // Render 4 blocks
         if (logic.rotation == 1) {
             // If rotated up;
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*5";
             logic.board[logic.activeRow][logic.activeCol-1] = "*5";
             logic.board[logic.activeRow-1][logic.activeCol] = "*5";
@@ -184,6 +190,7 @@ class Blocks {
         }
         else if (logic.rotation == 2) {
             // If rotated right;
+            this.checkWallCollision(0, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*5";
             logic.board[logic.activeRow-1][logic.activeCol] = "*5";
             logic.board[logic.activeRow][logic.activeCol+1] = "*5";
@@ -191,6 +198,7 @@ class Blocks {
         }
         else if (logic.rotation == 3) {
             // If rotated down; 
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*5";
             logic.board[logic.activeRow][logic.activeCol+1] = "*5";
             logic.board[logic.activeRow+1][logic.activeCol] = "*5";
@@ -198,6 +206,7 @@ class Blocks {
         }
         else if (logic.rotation == 4) {
             // If rotated left; 
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*5";
             logic.board[logic.activeRow+1][logic.activeCol] = "*5";
             logic.board[logic.activeRow][logic.activeCol-1] = "*5";
@@ -207,15 +216,12 @@ class Blocks {
 
     /**
      * Make a T-tetrimino
-     * 
-     * @param {int} logic.activeRow The position for the logic.activeRow in the array
-     * @param {int} logic.activeCol The position for the logic.activeColumn in the array
-     * @param {int} logic.rotation Rotation (1=up, 2=right, 3=down, 4=left)
      */
     t() {
         // Render 4 blocks
         if (logic.rotation == 1) {
             // If rotated up;
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*2";
             logic.board[logic.activeRow][logic.activeCol-1] = "*2";
             logic.board[logic.activeRow][logic.activeCol+1] = "*2";
@@ -224,6 +230,7 @@ class Blocks {
         }
         else if (logic.rotation == 2) {
             // If rotated right;
+            this.checkWallCollision(0, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*2";
             logic.board[logic.activeRow-1][logic.activeCol] = "*2";
             logic.board[logic.activeRow+1][logic.activeCol] = "*2";
@@ -231,6 +238,7 @@ class Blocks {
         }
         else if (logic.rotation == 3) {
             // If rotated down; 
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*2";
             logic.board[logic.activeRow][logic.activeCol+1] = "*2";
             logic.board[logic.activeRow][logic.activeCol-1] = "*2";
@@ -238,6 +246,7 @@ class Blocks {
         }
         else if (logic.rotation == 4) {
             // If rotated left; 
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*2";
             logic.board[logic.activeRow+1][logic.activeCol] = "*2";
             logic.board[logic.activeRow-1][logic.activeCol] = "*2";
@@ -247,15 +256,12 @@ class Blocks {
 
     /**
      * Make a Z-tetrimino
-     * 
-     * @param {int} logic.activeRow The position for the logic.activeRow in the array
-     * @param {int} logic.activeCol The position for the logic.activeColumn in the array
-     * @param {int} logic.rotation Rotation (1=up, 2=right, 3=down, 4=left)
      */
     z() {
         // Render 4 blocks
         if (logic.rotation == 1) {
             // If rotated up;
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*1";
             logic.board[logic.activeRow][logic.activeCol+1] = "*1";
             logic.board[logic.activeRow-1][logic.activeCol] = "*1";
@@ -264,6 +270,7 @@ class Blocks {
         }
         else if (logic.rotation == 2) {
             // If rotated right;
+            this.checkWallCollision(0, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*1";
             logic.board[logic.activeRow+1][logic.activeCol] = "*1";
             logic.board[logic.activeRow][logic.activeCol+1] = "*1";
@@ -271,6 +278,7 @@ class Blocks {
         }
         else if (logic.rotation == 3) {
             // If rotated down; 
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*1";
             logic.board[logic.activeRow][logic.activeCol-1] = "*1";
             logic.board[logic.activeRow+1][logic.activeCol] = "*1";
@@ -278,6 +286,7 @@ class Blocks {
         }
         else if (logic.rotation == 4) {
             // If rotated left; 
+            this.checkWallCollision(1, 8);
             logic.board[logic.activeRow][logic.activeCol] = "*1";
             logic.board[logic.activeRow][logic.activeCol-1] = "*1";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*1";

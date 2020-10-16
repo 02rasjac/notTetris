@@ -53,7 +53,6 @@ function keyPressed() {
     else if (keyCode === DOWN_ARROW) {
         logic.activeRow++;
     }
-    console.log(logic.activeCol);
 }
 
 //! ======================
