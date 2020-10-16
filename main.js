@@ -1,10 +1,4 @@
 // TODO: PREVENT COLLISION AND "OUT OF BOUNDS"
-//      MAKE A COPY OF THE BOARD BEFORE MOVING THE, 
-//      IF THERE ISN'T FOUR ASTERISKS IN THE UPDATED VERSION;
-//          REVERT TO THE OLD; ELSE UPDATE
-//      IF THE ACTIVE TETRIMINO COLLIDES WITH AN EXISTING TETRIMINO IN 
-//      THE NEW VERSION;
-//          REVERT TO THE OLD; ELSE UPDATE
 // TODO: LET THE TETRIMINOS FALL
 
 let block;
@@ -52,23 +46,5 @@ function keyPressed() {
     }
     else if (keyCode === DOWN_ARROW) {
         logic.activeRow++;
-    }
-}
-
-//! ======================
-//! ------DO NOT USE------
-//! ======================
-function drawBackground() {
-    // Draw the background as columns
-    for (let x = 0; x < 200; x+20) {
-        strokeWeight(20);
-        if (x = 20) {
-            stroke(0);
-            line(x, 0, x, height);
-        }
-        else {
-            stroke(50);
-            line(x, 0, x, height);
-        }  
     }
 }

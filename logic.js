@@ -24,18 +24,6 @@ class Logic {
         // Create the board as an array
         this.reset();
         this.blocks = new Blocks(this);
-
-        //! TESTING
-        // this.board[0][0] = "1";
-        // this.board[0][1] = "2";
-        // this.board[0][2] = "3";
-        // this.board[0][3] = "4";
-        // this.board[0][4] = "5";
-        // this.board[0][5] = "6";
-        // this.board[0][6] = "7";
-
-        //console.log(this.board);
-        //this.checkOutOfBounds();
     }
 
     /**
@@ -79,8 +67,6 @@ class Logic {
      * Updates the active Tetrimino
      * 
      * @param {string} tetri The Geometry to draw
-     * @param {int} row Row-Position for rotation-point
-     * @param {int} col Col-Position for rotation-point
      */
     activeTetri(tetri) {
         switch (tetri) {
