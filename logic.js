@@ -1,6 +1,7 @@
 class Logic {
     colors;
     board = [];
+    cachedBoard = [];
     blocks;
     rotation;
     constructor() {
@@ -17,12 +18,12 @@ class Logic {
 
         // Rotation
         this.rotation = 1;
-        this.activeRow = 3;
-        this.activeCol = 3;
+        this.activeRow = 1;
+        this.activeCol = 1;
 
         // Create the board as an array
         this.reset();
-        this.blocks = new Blocks(this.board);
+        this.blocks = new Blocks(this);
 
         //! TESTING
         // this.board[0][0] = "1";
@@ -59,11 +60,11 @@ class Logic {
                     this.blocks.drawBlock(
                         this.colors[sign[sign.length == 1 ? "0" : "1"]], 
                         x, y);
-                }
 
-                // If the sign first char is *; empty it
-                if (sign != "" && sign[0] == "*") {
-                    this.board[i][j] = "";
+                    // If the sign first char is *; empty it
+                    if (sign[0] == "*") {
+                        this.board[i][j] = "";
+                    }
                 }
                 x += 20;
             }
@@ -72,9 +73,6 @@ class Logic {
     }
 
     checkOutOfBounds() {
-        let cachedBoard = this.board.slice();
-
-        console.log(cachedBoard);
     }
 
     /**
@@ -87,7 +85,7 @@ class Logic {
     activeTetri(tetri) {
         switch (tetri) {
             case "I":
-                this.blocks.i(this.activeRow, this.activeCol, this.rotation);
+                this.blocks.i();
                 break;
             case "O":
                 this.blocks.o(this.activeRow, this.activeCol, this.rotation);

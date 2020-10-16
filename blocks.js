@@ -10,8 +10,8 @@
  * Functions for rendering blocks
  */
 class Blocks {
-    constructor(board=[[]]) {
-        this.board = board;
+    constructor(logic) {
+        console.log(logic.board);
     }
     /**
      * Draw a single block
@@ -32,39 +32,39 @@ class Blocks {
      * @param {int} col The position for the column in the array
      * @param {int} tetrirotation Rotation (1=up, 2=right, 3=down, 4=left)
      */
-    i(row, col, tetriRotation) {
+    i() {
         //this.updateActiveTetri();
         // Render 4 blocks
-        if (tetriRotation == 1) {
+        if (logic.rotation == 1) {
             // If rotated up;
-            this.board[row][col] = "*4";
-            this.board[row+1][col] = "*4";
-            this.board[row-1][col] = "*4";
-            this.board[row+2][col] = "*4";
+            logic.board[logic.activeRow][logic.activeCol] = "*4";
+            logic.board[logic.activeRow+1][logic.activeCol] = "*4";
+            logic.board[logic.activeRow-1][logic.activeCol] = "*4";
+            logic.board[logic.activeRow+2][logic.activeCol] = "*4";
             
         }
-        else if (tetriRotation == 2) {
+        else if (logic.rotation == 2) {
             // If rotated right;
-            row += 1;
-            this.board[row][col] = "*4";
-            this.board[row][col-1] = "*4";
-            this.board[row][col+1] = "*4";
-            this.board[row][col-2] = "*4";
+            //logic.activeRow += 1;
+            logic.board[logic.activeRow+1][logic.activeCol] = "*4";
+            logic.board[logic.activeRow+1][logic.activeCol-1] = "*4";
+            logic.board[logic.activeRow+1][logic.activeCol+1] = "*4";
+            logic.board[logic.activeRow+1][logic.activeCol-2] = "*4";
         }
-        else if (tetriRotation == 3) {
+        else if (logic.rotation == 3) {
             // If rotated down; 
-            col -= 1;
-            this.board[row][col] = "*4";
-            this.board[row+1][col] = "*4";
-            this.board[row-1][col] = "*4";
-            this.board[row+2][col] = "*4";
+            //logic.activeCol -= 1;
+            logic.board[logic.activeRow][logic.activeCol-1] = "*4";
+            logic.board[logic.activeRow+1][logic.activeCol-1] = "*4";
+            logic.board[logic.activeRow-1][logic.activeCol-1] = "*4";
+            logic.board[logic.activeRow+2][logic.activeCol-1] = "*4";
         }
-        else if (tetriRotation == 4) {
+        else if (logic.rotation == 4) {
             // If rotated left; 
-            this.board[row][col] = "*4";
-            this.board[row][col-1] = "*4";
-            this.board[row][col+1] = "*4";
-            this.board[row][col-2] = "*4";
+            logic.board[logic.activeRow][logic.activeCol] = "*4";
+            logic.board[logic.activeRow][logic.activeCol-1] = "*4";
+            logic.board[logic.activeRow][logic.activeCol+1] = "*4";
+            logic.board[logic.activeRow][logic.activeCol-2] = "*4";
         }
     }
 
@@ -75,213 +75,213 @@ class Blocks {
      * @param {int} col The position for the column in the array
      * @param {int} tetrirotation Rotation (1=up, 2=right, 3=down, 4=left)
      */
-    j(row, col, tetriRotation) {
+    j() {
         // Render 4 blocks
-        if (tetriRotation == 1) {
+        if (logic.rotation == 1) {
             // If rotated up;
-            this.board[row][col] = "*3";
-            this.board[row][col-1] = "*3";
-            this.board[row-1][col-1] = "*3";
-            this.board[row][col+1] = "*3";
+            logic.board[logic.activeRow][logic.activeCol] = "*3";
+            logic.board[logic.activeRow][logic.activeCol-1] = "*3";
+            logic.board[logic.activeRow-1][logic.activeCol-1] = "*3";
+            logic.board[logic.activeRow][logic.activeCol+1] = "*3";
             
         }
-        else if (tetriRotation == 2) {
+        else if (logic.rotation == 2) {
             // If rotated right;
-            this.board[row][col] = "*3";
-            this.board[row-1][col] = "*3";
-            this.board[row-1][col+1] = "*3";
-            this.board[row+1][col] = "*3";
+            logic.board[logic.activeRow][logic.activeCol] = "*3";
+            logic.board[logic.activeRow-1][logic.activeCol] = "*3";
+            logic.board[logic.activeRow-1][logic.activeCol+1] = "*3";
+            logic.board[logic.activeRow+1][logic.activeCol] = "*3";
         }
-        else if (tetriRotation == 3) {
+        else if (logic.rotation == 3) {
             // If rotated down; 
-            this.board[row][col] = "*3";
-            this.board[row][col-1] = "*3";
-            this.board[row][col+1] = "*3";
-            this.board[row+1][col+1] = "*3";
+            logic.board[logic.activeRow][logic.activeCol] = "*3";
+            logic.board[logic.activeRow][logic.activeCol-1] = "*3";
+            logic.board[logic.activeRow][logic.activeCol+1] = "*3";
+            logic.board[logic.activeRow+1][logic.activeCol+1] = "*3";
         }
-        else if (tetriRotation == 4) {
+        else if (logic.rotation == 4) {
             // If rotated left;
-            this.board[row][col] = "*3";
-            this.board[row-1][col] = "*3";
-            this.board[row+1][col-1] = "*3";
-            this.board[row+1][col] = "*3";
+            logic.board[logic.activeRow][logic.activeCol] = "*3";
+            logic.board[logic.activeRow-1][logic.activeCol] = "*3";
+            logic.board[logic.activeRow+1][logic.activeCol-1] = "*3";
+            logic.board[logic.activeRow+1][logic.activeCol] = "*3";
         }
     }
 
     /**
      * Make a L-tetrimino
      * 
-     * @param {int} row The position for the row in the array
-     * @param {int} col The position for the column in the array
-     * @param {int} tetrirotation Rotation (1=up, 2=right, 3=down, 4=left)
+     * @param {int} logic.activeRow The position for the logic.activeRow in the array
+     * @param {int} logic.activeCol The position for the logic.activeColumn in the array
+     * @param {int} logic.rotation Rotation (1=up, 2=right, 3=down, 4=left)
      */
-    l(row, col, tetriRotation) {
+    l() {
         // Render 4 blocks
-        if (tetriRotation == 1) {
+        if (logic.rotation == 1) {
             // If rotated up;
-            this.board[row][col] = "*7";
-            this.board[row][col-1] = "*7";
-            this.board[row-1][col+1] = "*7";
-            this.board[row][col+1] = "*7";
+            logic.board[logic.activeRow][logic.activeCol] = "*7";
+            logic.board[logic.activeRow][logic.activeCol-1] = "*7";
+            logic.board[logic.activeRow-1][logic.activeCol+1] = "*7";
+            logic.board[logic.activeRow][logic.activeCol+1] = "*7";
             
         }
-        else if (tetriRotation == 2) {
+        else if (logic.rotation == 2) {
             // If rotated right;
-            this.board[row][col] = "*7";
-            this.board[row-1][col] = "*7";
-            this.board[row+1][col+1] = "*7";
-            this.board[row+1][col] = "*7";
+            logic.board[logic.activeRow][logic.activeCol] = "*7";
+            logic.board[logic.activeRow-1][logic.activeCol] = "*7";
+            logic.board[logic.activeRow+1][logic.activeCol+1] = "*7";
+            logic.board[logic.activeRow+1][logic.activeCol] = "*7";
         }
-        else if (tetriRotation == 3) {
+        else if (logic.rotation == 3) {
             // If rotated down; 
-            this.board[row][col] = "*7";
-            this.board[row][col-1] = "*7";
-            this.board[row][col+1] = "*7";
-            this.board[row+1][col-1] = "*7";
+            logic.board[logic.activeRow][logic.activeCol] = "*7";
+            logic.board[logic.activeRow][logic.activeCol-1] = "*7";
+            logic.board[logic.activeRow][logic.activeCol+1] = "*7";
+            logic.board[logic.activeRow+1][logic.activeCol-1] = "*7";
         }
-        else if (tetriRotation == 4) {
+        else if (logic.rotation == 4) {
             // If rotated left; 
             
-            this.board[row][col] = "*7";
-            this.board[row-1][col] = "*7";
-            this.board[row-1][col-1] = "*7";
-            this.board[row+1][col] = "*7";
+            logic.board[logic.activeRow][logic.activeCol] = "*7";
+            logic.board[logic.activeRow-1][logic.activeCol] = "*7";
+            logic.board[logic.activeRow-1][logic.activeCol-1] = "*7";
+            logic.board[logic.activeRow+1][logic.activeCol] = "*7";
         }
     }
 
     /**
      * Render a square tetrimino
      * 
-     * @param {int} row The position for the row in the array
-     * @param {int} col The position for the column in the array
-     * @param {int} tetriRotation Rotation (1=up, 2=right, 3=down, 4=left)
+     * @param {int} logic.activeRow The position for the logic.activeRow in the array
+     * @param {int} logic.activeCol The position for the logic.activeColumn in the array
+     * @param {int} logic.rotation Rotation (1=up, 2=right, 3=down, 4=left)
      */
-    o(row, col, tetriRotation) {
+    o() {
         //this.updateActiveTetri();
         // Render 4 blocks
-        this.board[row][col] = "*6";
-        this.board[row-1][col] = "*6";
-        this.board[row-1][col-1] = "*6";
-        this.board[row][col-1] = "*6";
+        logic.board[logic.activeRow][logic.activeCol] = "*6";
+        logic.board[logic.activeRow-1][logic.activeCol] = "*6";
+        logic.board[logic.activeRow-1][logic.activeCol-1] = "*6";
+        logic.board[logic.activeRow][logic.activeCol-1] = "*6";
     }
 
     /**
      * Make a S-tetrimino
      * 
-     * @param {int} row The position for the row in the array
-     * @param {int} col The position for the column in the array
-     * @param {int} tetriRotation Rotation (1=up, 2=right, 3=down, 4=left)
+     * @param {int} logic.activeRow The position for the logic.activeRow in the array
+     * @param {int} logic.activeCol The position for the logic.activeColumn in the array
+     * @param {int} logic.rotation Rotation (1=up, 2=right, 3=down, 4=left)
      */
-    s(row, col, tetriRotation) {
+    s() {
         // Render 4 blocks
-        if (tetriRotation == 1) {
+        if (logic.rotation == 1) {
             // If rotated up;
-            this.board[row][col] = "*5";
-            this.board[row][col-1] = "*5";
-            this.board[row-1][col] = "*5";
-            this.board[row-1][col+1] = "*5";
+            logic.board[logic.activeRow][logic.activeCol] = "*5";
+            logic.board[logic.activeRow][logic.activeCol-1] = "*5";
+            logic.board[logic.activeRow-1][logic.activeCol] = "*5";
+            logic.board[logic.activeRow-1][logic.activeCol+1] = "*5";
             
         }
-        else if (tetriRotation == 2) {
+        else if (logic.rotation == 2) {
             // If rotated right;
-            this.board[row][col] = "*5";
-            this.board[row-1][col] = "*5";
-            this.board[row][col+1] = "*5";
-            this.board[row+1][col+1] = "*5";
+            logic.board[logic.activeRow][logic.activeCol] = "*5";
+            logic.board[logic.activeRow-1][logic.activeCol] = "*5";
+            logic.board[logic.activeRow][logic.activeCol+1] = "*5";
+            logic.board[logic.activeRow+1][logic.activeCol+1] = "*5";
         }
-        else if (tetriRotation == 3) {
+        else if (logic.rotation == 3) {
             // If rotated down; 
-            this.board[row][col] = "*5";
-            this.board[row][col+1] = "*5";
-            this.board[row+1][col] = "*5";
-            this.board[row+1][col-1] = "*5";
+            logic.board[logic.activeRow][logic.activeCol] = "*5";
+            logic.board[logic.activeRow][logic.activeCol+1] = "*5";
+            logic.board[logic.activeRow+1][logic.activeCol] = "*5";
+            logic.board[logic.activeRow+1][logic.activeCol-1] = "*5";
         }
-        else if (tetriRotation == 4) {
+        else if (logic.rotation == 4) {
             // If rotated left; 
-            this.board[row][col] = "*5";
-            this.board[row+1][col] = "*5";
-            this.board[row][col-1] = "*5";
-            this.board[row-1][col-1] = "*5";
+            logic.board[logic.activeRow][logic.activeCol] = "*5";
+            logic.board[logic.activeRow+1][logic.activeCol] = "*5";
+            logic.board[logic.activeRow][logic.activeCol-1] = "*5";
+            logic.board[logic.activeRow-1][logic.activeCol-1] = "*5";
         }
     }
 
     /**
      * Make a T-tetrimino
      * 
-     * @param {int} row The position for the row in the array
-     * @param {int} col The position for the column in the array
-     * @param {int} tetriRotation Rotation (1=up, 2=right, 3=down, 4=left)
+     * @param {int} logic.activeRow The position for the logic.activeRow in the array
+     * @param {int} logic.activeCol The position for the logic.activeColumn in the array
+     * @param {int} logic.rotation Rotation (1=up, 2=right, 3=down, 4=left)
      */
-    t(row, col, tetriRotation) {
+    t() {
         // Render 4 blocks
-        if (tetriRotation == 1) {
+        if (logic.rotation == 1) {
             // If rotated up;
-            this.board[row][col] = "*2";
-            this.board[row][col-1] = "*2";
-            this.board[row][col+1] = "*2";
-            this.board[row-1][col] = "*2";
+            logic.board[logic.activeRow][logic.activeCol] = "*2";
+            logic.board[logic.activeRow][logic.activeCol-1] = "*2";
+            logic.board[logic.activeRow][logic.activeCol+1] = "*2";
+            logic.board[logic.activeRow-1][logic.activeCol] = "*2";
             
         }
-        else if (tetriRotation == 2) {
+        else if (logic.rotation == 2) {
             // If rotated right;
-            this.board[row][col] = "*2";
-            this.board[row-1][col] = "*2";
-            this.board[row+1][col] = "*2";
-            this.board[row][col+1] = "*2";
+            logic.board[logic.activeRow][logic.activeCol] = "*2";
+            logic.board[logic.activeRow-1][logic.activeCol] = "*2";
+            logic.board[logic.activeRow+1][logic.activeCol] = "*2";
+            logic.board[logic.activeRow][logic.activeCol+1] = "*2";
         }
-        else if (tetriRotation == 3) {
+        else if (logic.rotation == 3) {
             // If rotated down; 
-            this.board[row][col] = "*2";
-            this.board[row][col+1] = "*2";
-            this.board[row][col-1] = "*2";
-            this.board[row+1][col] = "*2";
+            logic.board[logic.activeRow][logic.activeCol] = "*2";
+            logic.board[logic.activeRow][logic.activeCol+1] = "*2";
+            logic.board[logic.activeRow][logic.activeCol-1] = "*2";
+            logic.board[logic.activeRow+1][logic.activeCol] = "*2";
         }
-        else if (tetriRotation == 4) {
+        else if (logic.rotation == 4) {
             // If rotated left; 
-            this.board[row][col] = "*2";
-            this.board[row+1][col] = "*2";
-            this.board[row-1][col] = "*2";
-            this.board[row][col-1] = "*2";
+            logic.board[logic.activeRow][logic.activeCol] = "*2";
+            logic.board[logic.activeRow+1][logic.activeCol] = "*2";
+            logic.board[logic.activeRow-1][logic.activeCol] = "*2";
+            logic.board[logic.activeRow][logic.activeCol-1] = "*2";
         }
     }
 
     /**
      * Make a Z-tetrimino
      * 
-     * @param {int} row The position for the row in the array
-     * @param {int} col The position for the column in the array
-     * @param {int} tetriRotation Rotation (1=up, 2=right, 3=down, 4=left)
+     * @param {int} logic.activeRow The position for the logic.activeRow in the array
+     * @param {int} logic.activeCol The position for the logic.activeColumn in the array
+     * @param {int} logic.rotation Rotation (1=up, 2=right, 3=down, 4=left)
      */
-    z(row, col, tetriRotation) {
+    z() {
         // Render 4 blocks
-        if (tetriRotation == 1) {
+        if (logic.rotation == 1) {
             // If rotated up;
-            this.board[row][col] = "*1";
-            this.board[row][col+1] = "*1";
-            this.board[row-1][col] = "*1";
-            this.board[row-1][col-1] = "*1";
+            logic.board[logic.activeRow][logic.activeCol] = "*1";
+            logic.board[logic.activeRow][logic.activeCol+1] = "*1";
+            logic.board[logic.activeRow-1][logic.activeCol] = "*1";
+            logic.board[logic.activeRow-1][logic.activeCol-1] = "*1";
             
         }
-        else if (tetriRotation == 2) {
+        else if (logic.rotation == 2) {
             // If rotated right;
-            this.board[row][col] = "*1";
-            this.board[row+1][col] = "*1";
-            this.board[row][col+1] = "*1";
-            this.board[row-1][col+1] = "*1";
+            logic.board[logic.activeRow][logic.activeCol] = "*1";
+            logic.board[logic.activeRow+1][logic.activeCol] = "*1";
+            logic.board[logic.activeRow][logic.activeCol+1] = "*1";
+            logic.board[logic.activeRow-1][logic.activeCol+1] = "*1";
         }
-        else if (tetriRotation == 3) {
+        else if (logic.rotation == 3) {
             // If rotated down; 
-            this.board[row][col] = "*1";
-            this.board[row][col-1] = "*1";
-            this.board[row+1][col] = "*1";
-            this.board[row+1][col+1] = "*1";
+            logic.board[logic.activeRow][logic.activeCol] = "*1";
+            logic.board[logic.activeRow][logic.activeCol-1] = "*1";
+            logic.board[logic.activeRow+1][logic.activeCol] = "*1";
+            logic.board[logic.activeRow+1][logic.activeCol+1] = "*1";
         }
-        else if (tetriRotation == 4) {
+        else if (logic.rotation == 4) {
             // If rotated left; 
-            this.board[row][col] = "*1";
-            this.board[row][col-1] = "*1";
-            this.board[row+1][col-1] = "*1";
-            this.board[row-1][col] = "*1";
+            logic.board[logic.activeRow][logic.activeCol] = "*1";
+            logic.board[logic.activeRow][logic.activeCol-1] = "*1";
+            logic.board[logic.activeRow+1][logic.activeCol-1] = "*1";
+            logic.board[logic.activeRow-1][logic.activeCol] = "*1";
         }
     }
 
@@ -290,16 +290,16 @@ class Blocks {
     //! ======================
     // updateActiveTetri() {
     //     let y = 0;
-    //     for (let i = 0; i < this.board.length; i++) {
+    //     for (let i = 0; i < logic.board.length; i++) {
     //         // X-coordinate
     //         let x = 0;
-    //         for (let j = 0; j < this.board[i].length; j++) {
+    //         for (let j = 0; j < logic.board[i].length; j++) {
     //             // The logical sign of the color
-    //             let sign = this.board[i][j];
+    //             let sign = logic.board[i][j];
 
     //             // If the sign first char is *; empty it
     //             if (sign != "" && sign[0] == "*") {
-    //                 this.board[i][j] = "";
+    //                 logic.board[i][j] = "";
     //             }
     //             x += 20;
     //         }
