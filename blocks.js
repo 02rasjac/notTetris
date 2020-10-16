@@ -39,7 +39,8 @@ class Blocks {
             logic.activeCol = maxCol;
         }
         console.log("Col: " + logic.activeCol + 
-                    "\nRow: " + logic.activeRow);
+                    "\nRow: " + logic.activeRow +
+                    "\nRot: " + logic.rotation);
     }
 
     /**
@@ -47,7 +48,7 @@ class Blocks {
      */
     i() {
         if (logic.rotation == 1) {
-            this.checkWallCollision(0, 8);
+            this.checkWallCollision(0, 9);
             logic.board[logic.activeRow][logic.activeCol] = "*4";
             logic.board[logic.activeRow+1][logic.activeCol] = "*4";
             logic.board[logic.activeRow-1][logic.activeCol] = "*4";
@@ -62,7 +63,7 @@ class Blocks {
             logic.board[logic.activeRow+1][logic.activeCol-2] = "*4";
         }
         else if (logic.rotation == 3) {
-            this.checkWallCollision(1, 9);
+            this.checkWallCollision(1, 10);
             logic.board[logic.activeRow][logic.activeCol-1] = "*4";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*4";
             logic.board[logic.activeRow-1][logic.activeCol-1] = "*4";
@@ -104,7 +105,7 @@ class Blocks {
             logic.board[logic.activeRow+1][logic.activeCol+1] = "*3";
         }
         else if (logic.rotation == 4) {
-            this.checkWallCollision(1, 8);
+            this.checkWallCollision(1, 9);
             logic.board[logic.activeRow][logic.activeCol] = "*3";
             logic.board[logic.activeRow-1][logic.activeCol] = "*3";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*3";
@@ -139,7 +140,7 @@ class Blocks {
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*7";
         }
         else if (logic.rotation == 4) {
-            this.checkWallCollision(1, 8);
+            this.checkWallCollision(1, 9);
             logic.board[logic.activeRow][logic.activeCol] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol-1] = "*7";
@@ -151,7 +152,7 @@ class Blocks {
      * Render a square tetrimino
      */
     o() {
-        this.checkWallCollision(1, 8);
+        this.checkWallCollision(1, 9);
         logic.board[logic.activeRow][logic.activeCol] = "*6";
         logic.board[logic.activeRow-1][logic.activeCol] = "*6";
         logic.board[logic.activeRow-1][logic.activeCol-1] = "*6";
@@ -185,7 +186,7 @@ class Blocks {
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*5";
         }
         else if (logic.rotation == 4) {
-            this.checkWallCollision(1, 8);
+            this.checkWallCollision(1, 9);
             logic.board[logic.activeRow][logic.activeCol] = "*5";
             logic.board[logic.activeRow+1][logic.activeCol] = "*5";
             logic.board[logic.activeRow][logic.activeCol-1] = "*5";
@@ -220,7 +221,7 @@ class Blocks {
             logic.board[logic.activeRow+1][logic.activeCol] = "*2";
         }
         else if (logic.rotation == 4) {
-            this.checkWallCollision(1, 8);
+            this.checkWallCollision(1, 9);
             logic.board[logic.activeRow][logic.activeCol] = "*2";
             logic.board[logic.activeRow+1][logic.activeCol] = "*2";
             logic.board[logic.activeRow-1][logic.activeCol] = "*2";
@@ -255,7 +256,7 @@ class Blocks {
             logic.board[logic.activeRow+1][logic.activeCol+1] = "*1";
         }
         else if (logic.rotation == 4) {
-            this.checkWallCollision(1, 8);
+            this.checkWallCollision(1, 9);
             logic.board[logic.activeRow][logic.activeCol] = "*1";
             logic.board[logic.activeRow][logic.activeCol-1] = "*1";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*1";
