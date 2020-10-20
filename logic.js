@@ -4,6 +4,7 @@ class Logic {
     cachedBoard = [];
     blocks;
     rotation;
+    hitFloor = false;
 
     /**@var {float} speed the falling speed in blocks per seconds*/
     speed = 1000;
@@ -96,16 +97,39 @@ class Logic {
             default:
                 break;
         }
+
+        if (this.hitFloor) {
+            this.killTetri();
+            this.hitFloor = false;
+            this.spawnTetri();
+        }
     }
 
     /**
      * Initial spawn of a tetrimino at the top, center
      * @param {string} tetri Tetrimino to spawn
      */
-    spawnTetri(tetri) {
+    spawnTetri() {
         this.rotation = 1;
-        //* CHANGE THIS TO THE CENTER WHEN READY
-        this.activeTetri(tetri, 1, 4);
+        this.activeRow = 1;
+        this.activeCol = 5;
+    }
+
+    killTetri() {
+        console.log(this.board);
+        // Loop the board to check for signs
+        for (let i = 0; i < this.board.length; i++) {
+            for (let j = 0; j < this.board[i].length; j++) {
+                // The logical sign of the color
+                let sign = this.board[i][j];
+                
+                // If the sign first char is *; Delete the *
+                if (sign[0] == "*") {
+                    this.board[i][j] = sign[1];
+                    console.log("Removing asterisk");
+                }
+            }
+        }
     }
 
     /**

@@ -12,7 +12,7 @@ function setup() {
     logic = new Logic();
 
     //! TESTING
-    logic.spawnTetri(testActive);
+    logic.spawnTetri();
 }
 
 function draw() {
@@ -21,7 +21,9 @@ function draw() {
     //! TESTING
     //* Has to ckeck board before updating the tetri
     logic.checkBoard();
+
     logic.activeTetri(testActive);
+
     logic.gravity();
 }
 
