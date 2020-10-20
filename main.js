@@ -51,10 +51,10 @@ function keyPressed() {
     }
     else if (keyCode === LEFT_ARROW) {
         // Move left
-        logic.activeCol--;
+        logic.moveLeft();
     }
     else if (keyCode === RIGHT_ARROW) {
         // Move right
-        logic.activeCol++;
+        logic.moveRight();
     }
 }

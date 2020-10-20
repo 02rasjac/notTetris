@@ -227,6 +227,24 @@ class Logic {
     }
 
     /**
+     * Move the tetrimino to the Left
+     */
+    moveLeft() {
+        if (!this.hitLeftBlock) {
+            this.activeCol--;
+        }
+    }
+
+    /**
+     * Move the tetrimino to the Right
+     */
+    moveRight() {
+        if (!this.hitRightBlock) {
+            this.activeCol++;
+        }
+    }
+
+    /**
      * Reset the board to an all empty
      */
     reset() {
