@@ -54,21 +54,8 @@ class Logic {
 
                     // If the sign first char is *; empty it
                     if (sign[0] == "*") {
-                        this.checkCollision();
-                        let signBelow = "";
-                        try {
-                            signBelow = this.board[i+1][j];
-                        }
-                        catch {}
-
-                        // Check if there is a block below an active block
-                        if (signBelow[0] != "*" &&
-                            signBelow    != "") {
-                            this.hitBlock = true;
-                        }
-                        else {
-                            this.hitBlock = false;
-                        }
+                        this.checkBorderCollision();
+                        this.checkBlockCollision(i, j);
                         this.board[i][j] = "";
                     }
                 }
@@ -125,7 +112,7 @@ class Logic {
      * @param {int} maxCol The largest column the tetrimino can be in based on rotation
      * @param {int} maxRow The largest row the tetrimino can be in based on rotation
      */
-    checkCollision(minCol, maxCol, maxRow) {
+    checkBorderCollision(minCol, maxCol, maxRow) {
         // Check collision with walls
         if (this.activeCol < minCol) {
             this.activeCol = minCol;
@@ -142,6 +129,25 @@ class Logic {
         console.log("Col: " + this.activeCol + 
                     "\nRow: " + this.activeRow +
                     "\nRot: " + this.rotation);
+    }
+
+    /**
+     * Check wheter there is a block below the active block.
+     * @param {int} row The Row for the current block to check
+     * @param {int} col The column for the current block to check
+     */
+    checkBlockCollision(row, col) {
+        let signBelow = "";
+        try {
+            signBelow = this.board[row+1][col];
+        }
+        catch {}
+
+        // Check if there is a block below an active block
+        if (signBelow[0] != "*" &&
+            signBelow    != "") {
+            this.hitBlock = true;
+        }
     }
 
     /**

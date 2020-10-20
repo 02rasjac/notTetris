@@ -22,28 +22,28 @@ class Blocks {
      */
     i() {
         if (logic.rotation == 1) {
-            logic.checkCollision(0, 9, 17);
+            logic.checkBorderCollision(0, 9, 17);
             logic.board[logic.activeRow][logic.activeCol] = "*4";
             logic.board[logic.activeRow+1][logic.activeCol] = "*4";
             logic.board[logic.activeRow-1][logic.activeCol] = "*4";
             logic.board[logic.activeRow+2][logic.activeCol] = "*4";
         }
         else if (logic.rotation == 2) {
-            logic.checkCollision(2, 8, 18);
+            logic.checkBorderCollision(2, 8, 18);
             logic.board[logic.activeRow+1][logic.activeCol] = "*4";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*4";
             logic.board[logic.activeRow+1][logic.activeCol+1] = "*4";
             logic.board[logic.activeRow+1][logic.activeCol-2] = "*4";
         }
         else if (logic.rotation == 3) {
-            logic.checkCollision(1, 10, 17);
+            logic.checkBorderCollision(1, 10, 17);
             logic.board[logic.activeRow][logic.activeCol-1] = "*4";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*4";
             logic.board[logic.activeRow-1][logic.activeCol-1] = "*4";
             logic.board[logic.activeRow+2][logic.activeCol-1] = "*4";
         }
         else if (logic.rotation == 4) {
-            logic.checkCollision(2, 8, 19);
+            logic.checkBorderCollision(2, 8, 19);
             logic.board[logic.activeRow][logic.activeCol] = "*4";
             logic.board[logic.activeRow][logic.activeCol-1] = "*4";
             logic.board[logic.activeRow][logic.activeCol+1] = "*4";
@@ -56,28 +56,28 @@ class Blocks {
      */
     j() {
         if (logic.rotation == 1) {
-            logic.checkCollision(1, 8, 19);
+            logic.checkBorderCollision(1, 8, 19);
             logic.board[logic.activeRow][logic.activeCol] = "*3";
             logic.board[logic.activeRow][logic.activeCol-1] = "*3";
             logic.board[logic.activeRow-1][logic.activeCol-1] = "*3";
             logic.board[logic.activeRow][logic.activeCol+1] = "*3";
         }
         else if (logic.rotation == 2) {
-            logic.checkCollision(0, 8, 18);
+            logic.checkBorderCollision(0, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*3";
             logic.board[logic.activeRow-1][logic.activeCol] = "*3";
             logic.board[logic.activeRow-1][logic.activeCol+1] = "*3";
             logic.board[logic.activeRow+1][logic.activeCol] = "*3";
         }
         else if (logic.rotation == 3) {
-            logic.checkCollision(1, 8, 18);
+            logic.checkBorderCollision(1, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*3";
             logic.board[logic.activeRow][logic.activeCol-1] = "*3";
             logic.board[logic.activeRow][logic.activeCol+1] = "*3";
             logic.board[logic.activeRow+1][logic.activeCol+1] = "*3";
         }
         else if (logic.rotation == 4) {
-            logic.checkCollision(1, 9, 18);
+            logic.checkBorderCollision(1, 9, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*3";
             logic.board[logic.activeRow-1][logic.activeCol] = "*3";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*3";
@@ -90,28 +90,28 @@ class Blocks {
      */
     l() {
         if (logic.rotation == 1) {
-            logic.checkCollision(1, 8, 19);
+            logic.checkBorderCollision(1, 8, 19);
             logic.board[logic.activeRow][logic.activeCol] = "*7";
             logic.board[logic.activeRow][logic.activeCol-1] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol+1] = "*7";
             logic.board[logic.activeRow][logic.activeCol+1] = "*7";
         }
         else if (logic.rotation == 2) {
-            logic.checkCollision(0, 8, 18);
+            logic.checkBorderCollision(0, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol] = "*7";
             logic.board[logic.activeRow+1][logic.activeCol+1] = "*7";
             logic.board[logic.activeRow+1][logic.activeCol] = "*7";
         }
         else if (logic.rotation == 3) {
-            logic.checkCollision(1, 8, 18);
+            logic.checkBorderCollision(1, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*7";
             logic.board[logic.activeRow][logic.activeCol-1] = "*7";
             logic.board[logic.activeRow][logic.activeCol+1] = "*7";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*7";
         }
         else if (logic.rotation == 4) {
-            logic.checkCollision(1, 9, 18);
+            logic.checkBorderCollision(1, 9, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol-1] = "*7";
@@ -123,7 +123,7 @@ class Blocks {
      * Render a square tetrimino
      */
     o() {
-        logic.checkCollision(1, 9, 19);
+        logic.checkBorderCollision(1, 9, 19);
         logic.board[logic.activeRow][logic.activeCol] = "*6";
         logic.board[logic.activeRow-1][logic.activeCol] = "*6";
         logic.board[logic.activeRow-1][logic.activeCol-1] = "*6";
@@ -135,28 +135,28 @@ class Blocks {
      */
     s() {
         if (logic.rotation == 1) {
-            logic.checkCollision(1, 8, 19);
+            logic.checkBorderCollision(1, 8, 19);
             logic.board[logic.activeRow][logic.activeCol] = "*5";
             logic.board[logic.activeRow][logic.activeCol-1] = "*5";
             logic.board[logic.activeRow-1][logic.activeCol] = "*5";
             logic.board[logic.activeRow-1][logic.activeCol+1] = "*5";
         }
         else if (logic.rotation == 2) {
-            logic.checkCollision(0, 8, 18);
+            logic.checkBorderCollision(0, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*5";
             logic.board[logic.activeRow-1][logic.activeCol] = "*5";
             logic.board[logic.activeRow][logic.activeCol+1] = "*5";
             logic.board[logic.activeRow+1][logic.activeCol+1] = "*5";
         }
         else if (logic.rotation == 3) {
-            logic.checkCollision(1, 8, 18);
+            logic.checkBorderCollision(1, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*5";
             logic.board[logic.activeRow][logic.activeCol+1] = "*5";
             logic.board[logic.activeRow+1][logic.activeCol] = "*5";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*5";
         }
         else if (logic.rotation == 4) {
-            logic.checkCollision(1, 9, 18);
+            logic.checkBorderCollision(1, 9, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*5";
             logic.board[logic.activeRow+1][logic.activeCol] = "*5";
             logic.board[logic.activeRow][logic.activeCol-1] = "*5";
@@ -169,28 +169,28 @@ class Blocks {
      */
     t() {
         if (logic.rotation == 1) {
-            logic.checkCollision(1, 8, 19);
+            logic.checkBorderCollision(1, 8, 19);
             logic.board[logic.activeRow][logic.activeCol] = "*2";
             logic.board[logic.activeRow][logic.activeCol-1] = "*2";
             logic.board[logic.activeRow][logic.activeCol+1] = "*2";
             logic.board[logic.activeRow-1][logic.activeCol] = "*2";
         }
         else if (logic.rotation == 2) {
-            logic.checkCollision(0, 8, 18);
+            logic.checkBorderCollision(0, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*2";
             logic.board[logic.activeRow-1][logic.activeCol] = "*2";
             logic.board[logic.activeRow+1][logic.activeCol] = "*2";
             logic.board[logic.activeRow][logic.activeCol+1] = "*2";
         }
         else if (logic.rotation == 3) {
-            logic.checkCollision(1, 8, 18);
+            logic.checkBorderCollision(1, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*2";
             logic.board[logic.activeRow][logic.activeCol+1] = "*2";
             logic.board[logic.activeRow][logic.activeCol-1] = "*2";
             logic.board[logic.activeRow+1][logic.activeCol] = "*2";
         }
         else if (logic.rotation == 4) {
-            logic.checkCollision(1, 9, 18);
+            logic.checkBorderCollision(1, 9, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*2";
             logic.board[logic.activeRow+1][logic.activeCol] = "*2";
             logic.board[logic.activeRow-1][logic.activeCol] = "*2";
@@ -203,28 +203,28 @@ class Blocks {
      */
     z() {
         if (logic.rotation == 1) {
-            logic.checkCollision(1, 8, 19);
+            logic.checkBorderCollision(1, 8, 19);
             logic.board[logic.activeRow][logic.activeCol] = "*1";
             logic.board[logic.activeRow][logic.activeCol+1] = "*1";
             logic.board[logic.activeRow-1][logic.activeCol] = "*1";
             logic.board[logic.activeRow-1][logic.activeCol-1] = "*1";
         }
         else if (logic.rotation == 2) {
-            logic.checkCollision(0, 8, 18);
+            logic.checkBorderCollision(0, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*1";
             logic.board[logic.activeRow+1][logic.activeCol] = "*1";
             logic.board[logic.activeRow][logic.activeCol+1] = "*1";
             logic.board[logic.activeRow-1][logic.activeCol+1] = "*1";
         }
         else if (logic.rotation == 3) {
-            logic.checkCollision(1, 8, 18);
+            logic.checkBorderCollision(1, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*1";
             logic.board[logic.activeRow][logic.activeCol-1] = "*1";
             logic.board[logic.activeRow+1][logic.activeCol] = "*1";
             logic.board[logic.activeRow+1][logic.activeCol+1] = "*1";
         }
         else if (logic.rotation == 4) {
-            logic.checkCollision(1, 9, 18);
+            logic.checkBorderCollision(1, 9, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*1";
             logic.board[logic.activeRow][logic.activeCol-1] = "*1";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*1";
