@@ -66,46 +66,6 @@ class Logic {
     }
 
     /**
-     * Updates the active Tetrimino
-     * 
-     * @param {string} tetri The Geometry to draw
-     */
-    activeTetri(tetri) {
-        switch (tetri) {
-            case "I":
-                this.blocks.i();
-                break;
-            case "O":
-                this.blocks.o();
-                break;
-            case "J":
-                this.blocks.j();
-                break;
-            case "L":
-                this.blocks.l();
-                break;
-            case "S":
-                this.blocks.s();
-                break;
-            case "T":
-                this.blocks.t();
-                break;
-            case "Z":
-                this.blocks.z();
-                break;
-            default:
-                break;
-        }
-
-        // If collision bottom; Kill it
-        if (this.hitFloor) {
-            this.killTetri();
-            this.hitFloor = false;
-            this.spawnTetri();
-        }
-    }
-
-    /**
      * Check if the tetrimino collided and prevent it from going through
      * 
      * @param {int} minCol The smalles column the tetrimino can have based on rotatino
@@ -180,34 +140,6 @@ class Logic {
     }
 
     /**
-     * Initial spawn of a tetrimino at the top, center
-     */
-    spawnTetri() {
-        this.rotation = 1;
-        this.activeRow = 1;
-        this.activeCol = 5;
-    }
-
-    /**
-     * Removes the * from the sign to "kill" it
-     */
-    killTetri() {
-        // Loop the board to check for signs
-        for (let i = 0; i < this.board.length; i++) {
-            for (let j = 0; j < this.board[i].length; j++) {
-                // The logical sign of the color
-                let sign = this.board[i][j];
-                
-                // If the sign first char is *; Delete the *
-                if (sign[0] == "*") {
-                    this.board[i][j] = sign[1];
-                    console.log("Removing asterisk");
-                }
-            }
-        }
-    }
-
-    /**
      * Let the tetrimino fall at normal speed
      */
     gravity(forceRun=false) {
@@ -241,6 +173,74 @@ class Logic {
     moveRight() {
         if (!this.hitRightBlock) {
             this.activeCol++;
+        }
+    }
+
+    /**
+     * Initial spawn of a tetrimino at the top, center
+     */
+    spawnTetri() {
+        this.rotation = 1;
+        this.activeRow = 1;
+        this.activeCol = 5;
+    }
+
+    /**
+     * Removes the * from the sign to "kill" it
+     */
+    killTetri() {
+        // Loop the board to check for signs
+        for (let i = 0; i < this.board.length; i++) {
+            for (let j = 0; j < this.board[i].length; j++) {
+                // The logical sign of the color
+                let sign = this.board[i][j];
+                
+                // If the sign first char is *; Delete the *
+                if (sign[0] == "*") {
+                    this.board[i][j] = sign[1];
+                    console.log("Removing asterisk");
+                }
+            }
+        }
+    }
+
+    /**
+     * Updates the active Tetrimino
+     * 
+     * @param {string} tetri The Geometry to draw
+     */
+    activeTetri(tetri) {
+        switch (tetri) {
+            case "I":
+                this.blocks.i();
+                break;
+            case "O":
+                this.blocks.o();
+                break;
+            case "J":
+                this.blocks.j();
+                break;
+            case "L":
+                this.blocks.l();
+                break;
+            case "S":
+                this.blocks.s();
+                break;
+            case "T":
+                this.blocks.t();
+                break;
+            case "Z":
+                this.blocks.z();
+                break;
+            default:
+                break;
+        }
+
+        // If collision bottom; Kill it
+        if (this.hitFloor) {
+            this.killTetri();
+            this.hitFloor = false;
+            this.spawnTetri();
         }
     }
 
