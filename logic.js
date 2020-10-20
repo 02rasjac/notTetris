@@ -137,17 +137,46 @@ class Logic {
      * @param {int} col The column for the current block to check
      */
     checkBlockCollision(row, col) {
-        let signBelow = "";
+        // Check if there is a block below an active block
         try {
-            signBelow = this.board[row+1][col];
+            let signBelow = this.board[row+1][col];
+
+            if (signBelow[0] != "*" &&
+            signBelow != "") {
+                this.hitBlock = true;
+            }
         }
+        catch {
+            // TODO: Maybe move floor-collision here
+        }
+
+        // Check if there is a block to the left
+        try {
+            let signLeft = this.board[row][col-1];
+
+            if (signLeft[0] != "*" &&
+            signLeft != "") {
+                this.hitLeftBlock = true;
+            }
+            else {
+                this.hitLeftBlock = false;
+            }
+        } 
         catch {}
 
-        // Check if there is a block below an active block
-        if (signBelow[0] != "*" &&
-            signBelow    != "") {
-            this.hitBlock = true;
-        }
+        // Check if there is a block to the right
+        try {
+            let signRight = this.board[row][col+1];
+
+            if (signRight[0] != "*" &&
+            signRight != "") {
+                this.hitRightBlock = true;
+            }
+            else {
+                this.hitRightBlock = false;
+            }
+        } 
+        catch {}
     }
 
     /**
