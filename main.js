@@ -47,7 +47,7 @@ function keyPressed() {
     }
     else if (keyCode === DOWN_ARROW) {
         // Move down
-        logic.activeRow++;
+        logic.gravity(true);
     }
     else if (keyCode === LEFT_ARROW) {
         // Move left

@@ -1,6 +1,8 @@
 class Logic {
     /**@var {bool} hitFloor A flag wheter the tetri collided with floor */
     hitFloor = false;
+    /**@var {bool} hitBlock A flag wheter the tetri collided with another block */
+    hitBlock = false;
 
     /**@var {float} speed the falling speed in blocks per seconds*/
     speed = 1000;
@@ -52,6 +54,21 @@ class Logic {
 
                     // If the sign first char is *; empty it
                     if (sign[0] == "*") {
+                        this.checkCollision();
+                        let signBelow = "";
+                        try {
+                            signBelow = this.board[i+1][j];
+                        }
+                        catch {}
+
+                        // Check if there is a block below an active block
+                        if (signBelow[0] != "*" &&
+                            signBelow    != "") {
+                            this.hitBlock = true;
+                        }
+                        else {
+                            this.hitBlock = false;
+                        }
                         this.board[i][j] = "";
                     }
                 }
@@ -158,10 +175,18 @@ class Logic {
     /**
      * Let the tetrimino fall at normal speed
      */
-    gravity() {
+    gravity(forceRun=false) {
         this.fallTimer += deltaTime;
-        if (this.fallTimer >= this.speed) {
-            this.activeRow++;
+        if (this.fallTimer >= this.speed || forceRun) {
+            // Kill tetri if hit block
+            if (this.hitBlock) {
+                this.killTetri();
+                this.hitBlock = false;
+                this.spawnTetri();
+            }
+            else {
+                this.activeRow++;
+            }
             this.fallTimer = 0;
         }
     }
