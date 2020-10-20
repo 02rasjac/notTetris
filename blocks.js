@@ -44,9 +44,9 @@ class Blocks {
             logic.hitFloor = true;
             // logic.spawnTetri();
         }
-        // console.log("Col: " + logic.activeCol + 
-        //             "\nRow: " + logic.activeRow +
-        //             "\nRot: " + logic.rotation);
+        console.log("Col: " + logic.activeCol + 
+                    "\nRow: " + logic.activeRow +
+                    "\nRot: " + logic.rotation);
     }
 
     /**
@@ -89,7 +89,7 @@ class Blocks {
      */
     j() {
         if (logic.rotation == 1) {
-            this.checkCollision(1, 8);
+            this.checkCollision(1, 8, 19);
             logic.board[logic.activeRow][logic.activeCol] = "*3";
             logic.board[logic.activeRow][logic.activeCol-1] = "*3";
             logic.board[logic.activeRow-1][logic.activeCol-1] = "*3";
@@ -97,21 +97,21 @@ class Blocks {
             
         }
         else if (logic.rotation == 2) {
-            this.checkCollision(0, 8);
+            this.checkCollision(0, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*3";
             logic.board[logic.activeRow-1][logic.activeCol] = "*3";
             logic.board[logic.activeRow-1][logic.activeCol+1] = "*3";
             logic.board[logic.activeRow+1][logic.activeCol] = "*3";
         }
         else if (logic.rotation == 3) {
-            this.checkCollision(1, 8);
+            this.checkCollision(1, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*3";
             logic.board[logic.activeRow][logic.activeCol-1] = "*3";
             logic.board[logic.activeRow][logic.activeCol+1] = "*3";
             logic.board[logic.activeRow+1][logic.activeCol+1] = "*3";
         }
         else if (logic.rotation == 4) {
-            this.checkCollision(1, 9);
+            this.checkCollision(1, 9, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*3";
             logic.board[logic.activeRow-1][logic.activeCol] = "*3";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*3";
@@ -124,7 +124,7 @@ class Blocks {
      */
     l() {
         if (logic.rotation == 1) {
-            this.checkCollision(1, 8);
+            this.checkCollision(1, 8, 19);
             logic.board[logic.activeRow][logic.activeCol] = "*7";
             logic.board[logic.activeRow][logic.activeCol-1] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol+1] = "*7";
@@ -132,21 +132,21 @@ class Blocks {
             
         }
         else if (logic.rotation == 2) {
-            this.checkCollision(0, 8);
+            this.checkCollision(0, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol] = "*7";
             logic.board[logic.activeRow+1][logic.activeCol+1] = "*7";
             logic.board[logic.activeRow+1][logic.activeCol] = "*7";
         }
         else if (logic.rotation == 3) {
-            this.checkCollision(1, 8);
+            this.checkCollision(1, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*7";
             logic.board[logic.activeRow][logic.activeCol-1] = "*7";
             logic.board[logic.activeRow][logic.activeCol+1] = "*7";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*7";
         }
         else if (logic.rotation == 4) {
-            this.checkCollision(1, 9);
+            this.checkCollision(1, 9, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol] = "*7";
             logic.board[logic.activeRow-1][logic.activeCol-1] = "*7";
@@ -158,7 +158,7 @@ class Blocks {
      * Render a square tetrimino
      */
     o() {
-        this.checkCollision(1, 9);
+        this.checkCollision(1, 9, 19);
         logic.board[logic.activeRow][logic.activeCol] = "*6";
         logic.board[logic.activeRow-1][logic.activeCol] = "*6";
         logic.board[logic.activeRow-1][logic.activeCol-1] = "*6";
@@ -170,7 +170,7 @@ class Blocks {
      */
     s() {
         if (logic.rotation == 1) {
-            this.checkCollision(1, 8);
+            this.checkCollision(1, 8, 19);
             logic.board[logic.activeRow][logic.activeCol] = "*5";
             logic.board[logic.activeRow][logic.activeCol-1] = "*5";
             logic.board[logic.activeRow-1][logic.activeCol] = "*5";
@@ -178,21 +178,21 @@ class Blocks {
             
         }
         else if (logic.rotation == 2) {
-            this.checkCollision(0, 8);
+            this.checkCollision(0, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*5";
             logic.board[logic.activeRow-1][logic.activeCol] = "*5";
             logic.board[logic.activeRow][logic.activeCol+1] = "*5";
             logic.board[logic.activeRow+1][logic.activeCol+1] = "*5";
         }
         else if (logic.rotation == 3) {
-            this.checkCollision(1, 8);
+            this.checkCollision(1, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*5";
             logic.board[logic.activeRow][logic.activeCol+1] = "*5";
             logic.board[logic.activeRow+1][logic.activeCol] = "*5";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*5";
         }
         else if (logic.rotation == 4) {
-            this.checkCollision(1, 9);
+            this.checkCollision(1, 9, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*5";
             logic.board[logic.activeRow+1][logic.activeCol] = "*5";
             logic.board[logic.activeRow][logic.activeCol-1] = "*5";
@@ -205,7 +205,7 @@ class Blocks {
      */
     t() {
         if (logic.rotation == 1) {
-            this.checkCollision(1, 8);
+            this.checkCollision(1, 8, 19);
             logic.board[logic.activeRow][logic.activeCol] = "*2";
             logic.board[logic.activeRow][logic.activeCol-1] = "*2";
             logic.board[logic.activeRow][logic.activeCol+1] = "*2";
@@ -213,21 +213,21 @@ class Blocks {
             
         }
         else if (logic.rotation == 2) {
-            this.checkCollision(0, 8);
+            this.checkCollision(0, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*2";
             logic.board[logic.activeRow-1][logic.activeCol] = "*2";
             logic.board[logic.activeRow+1][logic.activeCol] = "*2";
             logic.board[logic.activeRow][logic.activeCol+1] = "*2";
         }
         else if (logic.rotation == 3) {
-            this.checkCollision(1, 8);
+            this.checkCollision(1, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*2";
             logic.board[logic.activeRow][logic.activeCol+1] = "*2";
             logic.board[logic.activeRow][logic.activeCol-1] = "*2";
             logic.board[logic.activeRow+1][logic.activeCol] = "*2";
         }
         else if (logic.rotation == 4) {
-            this.checkCollision(1, 9);
+            this.checkCollision(1, 9, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*2";
             logic.board[logic.activeRow+1][logic.activeCol] = "*2";
             logic.board[logic.activeRow-1][logic.activeCol] = "*2";
@@ -240,7 +240,7 @@ class Blocks {
      */
     z() {
         if (logic.rotation == 1) {
-            this.checkCollision(1, 8);
+            this.checkCollision(1, 8, 19);
             logic.board[logic.activeRow][logic.activeCol] = "*1";
             logic.board[logic.activeRow][logic.activeCol+1] = "*1";
             logic.board[logic.activeRow-1][logic.activeCol] = "*1";
@@ -248,21 +248,21 @@ class Blocks {
             
         }
         else if (logic.rotation == 2) {
-            this.checkCollision(0, 8);
+            this.checkCollision(0, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*1";
             logic.board[logic.activeRow+1][logic.activeCol] = "*1";
             logic.board[logic.activeRow][logic.activeCol+1] = "*1";
             logic.board[logic.activeRow-1][logic.activeCol+1] = "*1";
         }
         else if (logic.rotation == 3) {
-            this.checkCollision(1, 8);
+            this.checkCollision(1, 8, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*1";
             logic.board[logic.activeRow][logic.activeCol-1] = "*1";
             logic.board[logic.activeRow+1][logic.activeCol] = "*1";
             logic.board[logic.activeRow+1][logic.activeCol+1] = "*1";
         }
         else if (logic.rotation == 4) {
-            this.checkCollision(1, 9);
+            this.checkCollision(1, 9, 18);
             logic.board[logic.activeRow][logic.activeCol] = "*1";
             logic.board[logic.activeRow][logic.activeCol-1] = "*1";
             logic.board[logic.activeRow+1][logic.activeCol-1] = "*1";
