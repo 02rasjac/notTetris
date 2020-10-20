@@ -1,14 +1,10 @@
 class Logic {
-    colors;
-    board = [];
-    cachedBoard = [];
-    blocks;
-    rotation;
+    /**@var {bool} hitFloor A flag wheter the tetri collided with floor */
     hitFloor = false;
 
     /**@var {float} speed the falling speed in blocks per seconds*/
     speed = 1000;
-    timer = 0;
+    fallTimer = 0;
 
     constructor() {
         // An object to reference colors
@@ -22,7 +18,7 @@ class Logic {
             "7": color(255, 128, 0), // Orange
         }
 
-        // Rotation
+        // Positions
         this.rotation = 1;
         this.activeRow = 1;
         this.activeCol = 1;
@@ -50,7 +46,6 @@ class Logic {
 
                 // If the sign is not empty; render it as a block
                 if (sign != "") {
-                    // Render a block
                     this.blocks.drawBlock(
                         this.colors[sign[sign.length == 1 ? "0" : "1"]], 
                         x, y);
@@ -77,27 +72,28 @@ class Logic {
                 this.blocks.i();
                 break;
             case "O":
-                this.blocks.o(this.activeRow, this.activeCol, this.rotation);
+                this.blocks.o();
                 break;
             case "J":
-                this.blocks.j(this.activeRow, this.activeCol, this.rotation);
+                this.blocks.j();
                 break;
             case "L":
-                this.blocks.l(this.activeRow, this.activeCol, this.rotation);
+                this.blocks.l();
                 break;
             case "S":
-                this.blocks.s(this.activeRow, this.activeCol, this.rotation);
+                this.blocks.s();
                 break;
             case "T":
-                this.blocks.t(this.activeRow, this.activeCol, this.rotation);
+                this.blocks.t();
                 break;
             case "Z":
-                this.blocks.z(this.activeRow, this.activeCol, this.rotation);
+                this.blocks.z();
                 break;
             default:
                 break;
         }
 
+        // If collision bottom; Kill it
         if (this.hitFloor) {
             this.killTetri();
             this.hitFloor = false;
@@ -106,8 +102,33 @@ class Logic {
     }
 
     /**
+     * Check if the tetrimino collided and prevent it from going through
+     * 
+     * @param {int} minCol The smalles column the tetrimino can have based on rotatino
+     * @param {int} maxCol The largest column the tetrimino can be in based on rotation
+     * @param {int} maxRow The largest row the tetrimino can be in based on rotation
+     */
+    checkCollision(minCol, maxCol, maxRow) {
+        // Check collision with walls
+        if (this.activeCol < minCol) {
+            this.activeCol = minCol;
+        }
+        else if (this.activeCol > maxCol) {
+            this.activeCol = maxCol;
+        }
+
+        // Check collision with floor
+        if (this.activeRow > maxRow) {
+            this.activeRow = maxRow;
+            this.hitFloor = true;
+        }
+        console.log("Col: " + this.activeCol + 
+                    "\nRow: " + this.activeRow +
+                    "\nRot: " + this.rotation);
+    }
+
+    /**
      * Initial spawn of a tetrimino at the top, center
-     * @param {string} tetri Tetrimino to spawn
      */
     spawnTetri() {
         this.rotation = 1;
@@ -115,8 +136,10 @@ class Logic {
         this.activeCol = 5;
     }
 
+    /**
+     * Removes the * from the sign to "kill" it
+     */
     killTetri() {
-        console.log(this.board);
         // Loop the board to check for signs
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board[i].length; j++) {
@@ -136,17 +159,15 @@ class Logic {
      * Let the tetrimino fall at normal speed
      */
     gravity() {
-        this.timer += deltaTime;
-        if (this.timer >= this.speed) {
+        this.fallTimer += deltaTime;
+        if (this.fallTimer >= this.speed) {
             this.activeRow++;
-            this.timer = 0;
+            this.fallTimer = 0;
         }
     }
 
     /**
      * Reset the board to an all empty
-     * 
-     * @returns {void}
      */
     reset() {
         this.board = [];
