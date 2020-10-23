@@ -118,9 +118,6 @@ class Logic {
             signLeft != "") {
                 this.hitLeftBlock = true;
             }
-            else {
-                this.hitLeftBlock = false;
-            }
         } 
         catch {}
 
@@ -131,9 +128,6 @@ class Logic {
             if (signRight[0] != "*" &&
             signRight != "") {
                 this.hitRightBlock = true;
-            }
-            else {
-                this.hitRightBlock = false;
             }
         } 
         catch {}
@@ -165,6 +159,7 @@ class Logic {
         if (!this.hitLeftBlock) {
             this.activeCol--;
         }
+        this.hitLeftBlock = false;
     }
 
     /**
@@ -174,6 +169,7 @@ class Logic {
         if (!this.hitRightBlock) {
             this.activeCol++;
         }
+        this.hitRightBlock = false;
     }
 
     /**
