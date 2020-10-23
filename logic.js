@@ -153,26 +153,6 @@ class Logic {
     }
 
     /**
-     * Move the tetrimino to the Left
-     */
-    moveLeft() {
-        if (!this.hitLeftBlock) {
-            this.activeCol--;
-        }
-        this.hitLeftBlock = false;
-    }
-
-    /**
-     * Move the tetrimino to the Right
-     */
-    moveRight() {
-        if (!this.hitRightBlock) {
-            this.activeCol++;
-        }
-        this.hitRightBlock = false;
-    }
-
-    /**
      * Initial spawn of a tetrimino at the top, center
      */
     spawnTetri() {

@@ -9,6 +9,7 @@ let testActive = "I";
 function setup() {
     createCanvas(200, 400);
     logic = new Logic();
+    pc = new PlayerControl(logic);
 
     //! TESTING
     logic.spawnTetri();
@@ -28,33 +29,19 @@ function draw() {
 
 function keyPressed() {
     if (keyCode === 65) {
-        // Rotate left;
-        if (logic.rotation != 1) {
-            logic.rotation--;
-        }
-        else {
-            logic.rotation = 4;
-        }
+        pc.rotateLeft();
     }
     else if (keyCode === 68) {
-        // Rotate right;
-        if (logic.rotation != 4) {
-            logic.rotation++;
-        }
-        else {
-            logic.rotation = 1;
-        }
+        pc.rotateRight();
     }
     else if (keyCode === DOWN_ARROW) {
         // Move down
         logic.gravity(true);
     }
     else if (keyCode === LEFT_ARROW) {
-        // Move left
-        logic.moveLeft();
+        pc.moveLeft();
     }
     else if (keyCode === RIGHT_ARROW) {
-        // Move right
-        logic.moveRight();
+        pc.moveRight();
     }
 }
