@@ -23,6 +23,17 @@ class PlayerControl {
     }
 
     /**
+     * Move the tetrimino down different ways
+     */
+    moveDown() {
+        logic.gravity(true);
+        // Minimum speed is 18, lower than that would break the blockcollision
+        if (smash) {logic.speed = 18;}
+        else {smash = true;}
+        setTimeout(function () {smash = false;}, 200);
+    }
+
+    /**
      * Rotate the active tetri to the left
      */
     rotateLeft() {

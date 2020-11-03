@@ -6,6 +6,9 @@ class Logic {
 
     /**@var {float} speed the falling speed in blocks per seconds*/
     speed = 1000;
+
+    /**@var {int} currentSpeed The actual speed it should have without the player smashing or moving fast */
+    currentSpeed = 1000;
     fallTimer = 0;
 
     constructor() {
@@ -178,6 +181,9 @@ class Logic {
                 }
             }
         }
+
+        // Change spped to normal
+        this.speed = this.currentSpeed;
     }
 
     /**

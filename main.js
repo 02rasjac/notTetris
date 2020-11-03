@@ -2,6 +2,7 @@
 //* TODO: LET THE TETRIMINOS FALL
 
 let logic;
+let smash = false;
 
 //! TESTING
 let testActive = "I";
@@ -35,8 +36,7 @@ function keyPressed() {
         pc.rotateRight();
     }
     else if (keyCode === DOWN_ARROW) {
-        // Move down
-        logic.gravity(true);
+        pc.moveDown();
     }
     else if (keyCode === LEFT_ARROW) {
         pc.moveLeft();
