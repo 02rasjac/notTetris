@@ -5,9 +5,6 @@ let logic;
 let smash = false;
 let timeID_moveDown;
 
-//! TESTING
-let testActive = "I";
-
 function setup() {
     createCanvas(200, 400);
     logic = new Logic();
@@ -24,7 +21,7 @@ function draw() {
     //* Has to ckeck board before updating the tetri
     logic.checkBoard();
 
-    logic.activeTetri(testActive);
+    logic.activeTetri();
 
     logic.gravity();
 }

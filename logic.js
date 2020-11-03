@@ -1,4 +1,6 @@
 class Logic {
+    /**@var {string} tetrimino The current tetrimino*/
+    tetrimino;
     /**@var {bool} hitFloor A flag wheter the tetri collided with floor */
     hitFloor = false;
     /**@var {bool} hitBlock A flag wheter the tetri collided with another block */
@@ -22,6 +24,12 @@ class Logic {
             "6": color(255, 255, 0), // Yellow
             "7": color(255, 128, 0), // Orange
         }
+
+        this.possibleTetriminos = [
+            "I", "J", "L", "O", "S", "T", "Z"
+        ];
+
+        this.tetrimino = "I";
 
         // Positions
         this.rotation = 1;
@@ -239,6 +247,17 @@ class Logic {
             }
         }
 
+        // Randomly spawn a new tetri that is not the same as the last one
+        while (true) {
+            let newTetri = random(this.possibleTetriminos);
+
+            if (this.tetrimino != newTetri) {
+                this.tetrimino = newTetri;
+                break;
+            }
+            else {continue;}
+        }
+        
         this.checkRows();
 
         // Change spped to normal
@@ -250,8 +269,8 @@ class Logic {
      * 
      * @param {string} tetri The Geometry to draw
      */
-    activeTetri(tetri) {
-        switch (tetri) {
+    activeTetri() {
+        switch (this.tetrimino) {
             case "I":
                 this.blocks.i();
                 break;
