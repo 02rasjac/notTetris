@@ -3,6 +3,7 @@
 
 let logic;
 let smash = false;
+let timeID_moveDown;
 
 //! TESTING
 let testActive = "I";
@@ -37,11 +38,21 @@ function keyPressed() {
     }
     else if (keyCode === DOWN_ARROW) {
         pc.moveDown();
+        timeID_moveDown = setTimeout(
+            function () {logic.speed = 50;}, 150
+        );
     }
     else if (keyCode === LEFT_ARROW) {
         pc.moveLeft();
     }
     else if (keyCode === RIGHT_ARROW) {
         pc.moveRight();
+    }
+}
+
+function keyReleased() {
+    if (keyCode === DOWN_ARROW) {
+        clearTimeout(timeID_moveDown);
+        logic.speed = logic.currentSpeed;
     }
 }
