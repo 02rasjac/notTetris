@@ -68,6 +68,46 @@ class Logic {
         }
     }
 
+    removeRows() {
+
+        for (let i = this.board.length-1; i >= 0; i--) {
+            let numberOfBlocks = 0;
+            let removed = false;
+            for (let j = 0; j < this.board[i].length; j++) {
+                let sign = this.board[i][j];
+
+                // The row is not full; don't remove it
+                if (sign === "") {
+                    break;
+                }
+                else {
+                    numberOfBlocks++;
+                }
+
+                // If row is full; Empty all collumns
+                if (numberOfBlocks == this.board[i].length) {
+                    for (let col = 0; col < this.board[i].length; col++) {
+                        this.board[i][col] = "";
+                    }
+                    for (let row = i; row >= 0; row--) {
+                        for (let col = 0; col < this.board[row].length; col++) {
+                            try {
+                                this.board[row][col] = this.board[row-1][col];
+                            }
+                            catch {}
+                        }
+                    }
+                    removed = true;
+                }
+            }
+
+            if (removed) {
+                i++;
+                removed = false;
+            }
+        }
+    }
+
     /**
      * Check if the tetrimino collided and prevent it from going through
      * 
@@ -181,6 +221,8 @@ class Logic {
                 }
             }
         }
+
+        this.removeRows();
 
         // Change spped to normal
         this.speed = this.currentSpeed;
