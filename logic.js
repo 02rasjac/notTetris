@@ -68,11 +68,15 @@ class Logic {
         }
     }
 
-    removeRows() {
-
+    /**
+     * Check for full rows, remove full rows and move down
+     * all rows above.
+     */
+    checkRows() {
         for (let i = this.board.length-1; i >= 0; i--) {
             let numberOfBlocks = 0;
             let removed = false;
+            
             for (let j = 0; j < this.board[i].length; j++) {
                 let sign = this.board[i][j];
 
@@ -86,18 +90,7 @@ class Logic {
 
                 // If row is full; Empty all collumns
                 if (numberOfBlocks == this.board[i].length) {
-                    for (let col = 0; col < this.board[i].length; col++) {
-                        this.board[i][col] = "";
-                    }
-                    for (let row = i; row >= 0; row--) {
-                        for (let col = 0; col < this.board[row].length; col++) {
-                            try {
-                                this.board[row][col] = this.board[row-1][col];
-                            }
-                            catch {}
-                        }
-                    }
-                    removed = true;
+                    removed = this.removeRow(i);
                 }
             }
 
@@ -106,6 +99,30 @@ class Logic {
                 removed = false;
             }
         }
+    }
+
+    /**
+     * Remove the row and move it down
+     * @param {int} removingRow The row to remove
+     * @returns {bool} 'true' if succesfully removed the row
+     */
+    removeRow(removingRow) {
+        // Empty the row
+        for (let col = 0; col < this.board[removingRow].length; col++) {
+            this.board[removingRow][col] = "";
+        }
+
+        // Move down all rows above once
+        for (let row = removingRow; row >= 0; row--) {
+            for (let col = 0; col < this.board[row].length; col++) {
+                try {
+                    this.board[row][col] = this.board[row-1][col];
+                }
+                catch {}
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -222,7 +239,7 @@ class Logic {
             }
         }
 
-        this.removeRows();
+        this.checkRows();
 
         // Change spped to normal
         this.speed = this.currentSpeed;
