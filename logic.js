@@ -13,6 +13,9 @@ class Logic {
     currentSpeed = 1000;
     fallTimer = 0;
 
+    /**@var {bool} hasEnded Wheter the player lost or not */
+    hasEnded = false;
+
     constructor() {
         // An object to reference colors
         this.colors = {
@@ -154,9 +157,6 @@ class Logic {
             this.activeRow = maxRow;
             this.hitFloor = true;
         }
-        console.log("Col: " + this.activeCol + 
-                    "\nRow: " + this.activeRow +
-                    "\nRot: " + this.rotation);
     }
 
     /**
@@ -233,6 +233,10 @@ class Logic {
      * Removes the * from the sign to "kill" it
      */
     killTetri() {
+        // If dead on top; end game
+        if (this.activeRow == 1) {
+            this.endGame();
+        }
         // Loop the board to check for signs
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board[i].length; j++) {
@@ -302,6 +306,13 @@ class Logic {
             this.hitFloor = false;
             this.spawnTetri();
         }
+    }
+
+    /**
+     * End the game
+     */
+    endGame() {
+        this.hasEnded = true;
     }
 
     /**

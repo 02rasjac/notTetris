@@ -17,13 +17,20 @@ function setup() {
 function draw() {
     background(30);
 
-    //! TESTING
-    //* Has to ckeck board before updating the tetri
-    logic.checkBoard();
+    if (logic.hasEnded) {
+        textSize(32);
+        fill(255, 255, 255);
+        text("GAME OVER", 0, height/2);
+    }
+    else {
+        //! TESTING
+        //* Has to ckeck board before updating the tetri
+        logic.checkBoard();
 
-    logic.activeTetri();
+        logic.activeTetri();
 
-    logic.gravity();
+        logic.gravity();
+    }
 }
 
 function keyPressed() {
