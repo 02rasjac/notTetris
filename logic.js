@@ -36,7 +36,7 @@ class Logic {
 
     this.possibleTetriminos = ["I", "J", "L", "O", "S", "T", "Z"];
 
-    this.tetrimino = "I";
+    this.tetrimino = this.newTetri();
 
     // Positions
     this.rotation = 1;
@@ -254,22 +254,29 @@ class Logic {
       }
     }
 
-    // Randomly spawn a new tetri that is not the same as the last one
-    while (true) {
-      let newTetri = random(this.possibleTetriminos);
-
-      if (this.tetrimino != newTetri) {
-        this.tetrimino = newTetri;
-        break;
-      } else {
-        continue;
-      }
-    }
+    this.tetrimino = this.newTetri();
 
     this.checkRows();
 
     // Change spped to normal
     this.speed = this.currentSpeed;
+  }
+
+  /**
+   * Randomly generates a new tetri that is not the same as the one directly befor
+   * @returns {string} The char representing a tetrimino
+   */
+  newTetri() {
+    // Randomly spawn a new tetri that is not the same as the last one
+    while (true) {
+      let newTetri = random(this.possibleTetriminos);
+
+      if (this.tetrimino != newTetri) {
+        return newTetri;
+      } else {
+        continue;
+      }
+    }
   }
 
   /**
