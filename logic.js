@@ -1,16 +1,13 @@
 class Logic {
-  /**@var {string} tetrimino The current tetrimino*/
-  tetrimino;
   /**@var {bool} hitFloor A flag wheter the tetri collided with floor */
   hitFloor = false;
+
   /**@var {bool} hitBlock A flag wheter the tetri collided with another block */
   hitBlock = false;
 
-  /**@var {float} speed the falling speed in blocks per seconds*/
-  speed = 1000;
+  /**@var {int} startingSpeed The speed at which the game starts at */
+  startingSpeed = 1000;
 
-  /**@var {int} currentSpeed The actual speed it should have without the player smashing or moving fast */
-  currentSpeed = 1000;
   fallTimer = 0;
 
   /**@var {bool} hasEnded Wheter the player lost or not */
@@ -37,11 +34,6 @@ class Logic {
     this.possibleTetriminos = ["I", "J", "L", "O", "S", "T", "Z"];
 
     this.tetrimino = this.newTetri();
-
-    // Positions
-    this.rotation = 1;
-    this.activeRow = 1;
-    this.activeCol = 1;
 
     // Create the board as an array
     this.reset();
@@ -121,7 +113,6 @@ class Logic {
 
     if (linesRemoved > 0) {
       this.score.addScore(linesRemoved, this.level);
-      this.totalRemovedLines += linesRemoved;
     }
   }
 
@@ -144,6 +135,11 @@ class Logic {
         } catch {}
       }
     }
+
+    // Increase level every 10th line removed
+    this.totalRemovedLines++;
+    this.level +=
+      this.totalRemovedLines % 10 === 0 && this.totalRemovedLines > 0 ? 1 : 0;
 
     return true;
   }
@@ -259,7 +255,7 @@ class Logic {
     this.checkRows();
 
     // Change spped to normal
-    this.speed = this.currentSpeed;
+    this.speed = this.calculateSpeed();
   }
 
   /**
@@ -339,5 +335,9 @@ class Logic {
       }
       this.board.push(row);
     }
+    this.speed = this.startingSpeed;
   }
+
+  /** Calculate the speed based on the level */
+  calculateSpeed = () => 1000 / (this.level / 2 + 1);
 }

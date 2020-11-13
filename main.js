@@ -52,6 +52,6 @@ function keyPressed() {
 function keyReleased() {
   if (keyCode === DOWN_ARROW) {
     clearTimeout(timeID_moveDown);
-    logic.speed = logic.currentSpeed;
+    logic.speed = logic.calculateSpeed();
   }
 }
