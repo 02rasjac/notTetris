@@ -9,15 +9,15 @@
       max-width: 960px;
       margin: auto;
     }
-    main {
-      min-height: 100vh;
-    }
     canvas {
       padding-left: 0;
       padding-right: 0;
       margin: auto;
       display: block;
       width: 200px;
+    }
+    h2 {
+      text-align: center;
     }
   </style>
   <script src="../p5/p5.js"></script>
@@ -26,9 +26,11 @@
   <script src="logic.js"></script>
   <script src="blocks.js"></script>
   <script src="playerControl.js"></script>
+  <script src="score.js"></script>
 </head>
 
 <body>
+  <h2>SCORE: <span id="score">0</span></h2>
   <main>
   </main>
 </body>
