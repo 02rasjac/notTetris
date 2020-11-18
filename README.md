@@ -2,7 +2,17 @@
 This project is made for me to learn JavaScript aswell as a project for school.
 
 ## Technologies
-[P5.js](https://p5js.org/) is used to make the game. The directory containing p5.js files should be in the same folder as the project-folder.
+* ES6
+* [P5.js](https://p5js.org/) Version 1.1.9
 
 ## Install
-To run the game, start any kind of webserver and open *index.html* in a browser.
+The directory containing p5.js files should be in the same folder as the project-folder. If you rather use a CDN, put this before all other scripts in `index.html`:
+```HTML
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+```
+And remove 
+```HTML
+<script src="../p5/p5.js"></script>
+```
+To run the game, start any kind of webserver and open `index.html` in a browser.
+
