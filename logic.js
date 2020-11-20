@@ -146,8 +146,12 @@ class Logic {
 
     // Increase level every 10th line removed
     this.totalRemovedLines++;
-    this.level +=
-      this.totalRemovedLines % 10 === 0 && this.totalRemovedLines > 0 ? 1 : 0;
+    if (this.totalRemovedLines % 10 === 0 && this.totalRemovedLines > 0) {
+      this.level++;
+      document.getElementById("level").innerHTML = this.level;
+    }
+
+    document.getElementById("lines").innerHTML = this.totalRemovedLines;
 
     return true;
   }
@@ -283,8 +287,6 @@ class Logic {
     let possibleUpcomings = this.possibleTetriminos.filter(
       (tetri) => !this.upcomingTetris.includes(tetri)
     );
-
-    console.log(this.upcomingTetris);
     // Randomly spawn a new tetri that is not the same any of the upcoming tetriminos
     while (true) {
       let newTetri = random(possibleUpcomings);
