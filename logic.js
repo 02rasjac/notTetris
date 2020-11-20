@@ -24,17 +24,15 @@ class Logic {
 
   constructor() {
     // An object to reference colors
-    this.colors = {
-      1: color(255, 0, 0), // Red
-      2: color(204, 0, 204), // Purple
-      3: color(0, 0, 255), // Blue
-      4: color(0, 255, 255), // Cyan
-      5: color(0, 255, 0), // Green
-      6: color(255, 255, 0), // Yellow
-      7: color(255, 128, 0), // Orange
+    this.tetriminos = {
+      Z: color(255, 0, 0), // Red
+      T: color(204, 0, 204), // Purple
+      J: color(0, 0, 255), // Blue
+      I: color(0, 255, 255), // Cyan
+      S: color(0, 255, 0), // Green
+      O: color(255, 255, 0), // Yellow
+      L: color(255, 128, 0), // Orange
     };
-
-    this.possibleTetriminos = ["I", "J", "L", "O", "S", "T", "Z"];
 
     // Initilise the upcoming tetris
     for (let i = 0; i < 4; i++) {
@@ -68,7 +66,7 @@ class Logic {
         // If the sign is not empty; render it as a block
         if (sign != "") {
           this.blocks.drawBlock(
-            this.colors[sign[sign.length == 1 ? "0" : "1"]],
+            this.tetriminos[sign[sign.length == 1 ? "0" : "1"]],
             x,
             y
           );
@@ -283,8 +281,9 @@ class Logic {
       nextTetri = this.upcomingTetris.shift();
     }
 
+    let possibleTetriminos = Object.keys(this.tetriminos);
     // Filter out tetris that can not be chosen to optimize the while-loop
-    let possibleUpcomings = this.possibleTetriminos.filter(
+    let possibleUpcomings = possibleTetriminos.filter(
       (tetri) => !this.upcomingTetris.includes(tetri)
     );
     // Randomly spawn a new tetri that is not the same any of the upcoming tetriminos
