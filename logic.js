@@ -60,7 +60,7 @@ class Logic {
     // Loop the board to check for signs
     for (let i = 0; i < this.board.length; i++) {
       // X-coordinate for rendered block
-      let x = 0;
+      let x = 100;
       for (let j = 0; j < this.board[i].length; j++) {
         // The logical sign of the color
         let sign = this.board[i][j];

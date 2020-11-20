@@ -6,7 +6,7 @@ let smash = false;
 let timeID_moveDown;
 
 function setup() {
-  createCanvas(200, 400);
+  createCanvas(400, 400);
   logic = new Logic();
   pc = new PlayerControl(logic);
 
@@ -20,7 +20,7 @@ function draw() {
   if (logic.hasEnded) {
     textSize(32);
     fill(255, 255, 255);
-    text("GAME OVER", 0, height / 2);
+    text("GAME OVER", 100, height / 2);
   } else {
     //! TESTING
     //* Has to ckeck board before updating the tetri
