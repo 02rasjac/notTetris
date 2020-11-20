@@ -16,6 +16,15 @@ class Blocks {
     rect(x, y, 20, 20);
   }
 
+  drawUpcomingBlocks() {
+    let x = 350;
+    let y = 20;
+    logic.upcomingTetris.forEach((block) => {
+      this.drawBlock(logic.tetriminos[block], x, y);
+      y += 40;
+    });
+  }
+
   /**
    * Make a straight tetrimino
    */

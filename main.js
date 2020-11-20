@@ -25,6 +25,7 @@ function draw() {
     //! TESTING
     //* Has to ckeck board before updating the tetri
     logic.checkBoard();
+    logic.blocks.drawUpcomingBlocks();
 
     logic.activeTetri();
 
