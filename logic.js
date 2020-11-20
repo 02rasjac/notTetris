@@ -19,6 +19,9 @@ class Logic {
   /**@var {int} level The current level the player is on */
   level = 0;
 
+  /**@var {array} upcomingTetris The next four tetris */
+  upcomingTetris = [];
+
   constructor() {
     // An object to reference colors
     this.colors = {
@@ -32,6 +35,11 @@ class Logic {
     };
 
     this.possibleTetriminos = ["I", "J", "L", "O", "S", "T", "Z"];
+
+    // Initilise the upcoming tetris
+    for (let i = 0; i < 4; i++) {
+      this.newTetri(true);
+    }
 
     this.tetrimino = this.newTetri();
 
@@ -250,6 +258,7 @@ class Logic {
       }
     }
 
+    // Set active tetrimino to the first upcoming tetrimino
     this.tetrimino = this.newTetri();
 
     this.checkRows();
@@ -260,19 +269,35 @@ class Logic {
 
   /**
    * Randomly generates a new tetri that is not the same as the one directly befor
+   * @param {boolean} initial Set true if first time running, otherwise, ignore
    * @returns {string} The char representing a tetrimino
    */
-  newTetri() {
-    // Randomly spawn a new tetri that is not the same as the last one
-    while (true) {
-      let newTetri = random(this.possibleTetriminos);
+  newTetri(initial = false) {
+    let nextTetri;
 
-      if (this.tetrimino != newTetri) {
-        return newTetri;
+    if (!initial) {
+      nextTetri = this.upcomingTetris.shift();
+    }
+
+    // Filter out tetris that can not be chosen to optimize the while-loop
+    let possibleUpcomings = this.possibleTetriminos.filter(
+      (tetri) => !this.upcomingTetris.includes(tetri)
+    );
+
+    console.log(this.upcomingTetris);
+    // Randomly spawn a new tetri that is not the same any of the upcoming tetriminos
+    while (true) {
+      let newTetri = random(possibleUpcomings);
+
+      if (!this.upcomingTetris.includes(newTetri)) {
+        this.upcomingTetris.push(newTetri);
+        break;
       } else {
         continue;
       }
     }
+
+    return nextTetri;
   }
 
   /**
