@@ -26,6 +26,7 @@ function draw() {
     //* Has to ckeck board before updating the tetri
     logic.checkBoard();
     logic.blocks.drawUpcomingBlocks();
+    logic.blocks.drawHeldBlock();
 
     logic.activeTetri();
 
@@ -49,6 +50,8 @@ function keyPressed() {
     logic.pc.moveRight();
   } else if (keyCode === 32) {
     logic.pc.smash();
+  } else if (keyCode === SHIFT) {
+    logic.hold();
   }
 }
 

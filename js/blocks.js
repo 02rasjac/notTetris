@@ -26,6 +26,17 @@ class Blocks {
   }
 
   /**
+   * Render the block that is hold
+   */
+  drawHeldBlock() {
+    if (logic.heldTetris !== "") {
+      let x = 50;
+      let y = 20;
+      this.drawBlock(logic.tetriminos[logic.heldTetris], x, y);
+    }
+  }
+
+  /**
    * Make a straight tetrimino
    */
   i() {

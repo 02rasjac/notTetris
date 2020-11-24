@@ -22,6 +22,9 @@ class Logic {
   /**@var {array} upcomingTetris The next four tetris */
   upcomingTetris = [];
 
+  /**@var {string} heldTetris The tetrimino the player is holidng */
+  heldTetris = "";
+
   constructor() {
     // An object to reference colors
     this.tetriminos = {
@@ -302,6 +305,18 @@ class Logic {
     }
 
     return nextTetri;
+  }
+
+  hold() {
+    if (this.heldTetris === "") {
+      this.heldTetris = this.tetrimino;
+      this.tetrimino = this.newTetri();
+    } else {
+      // Switch between held tetris and the current tetris
+      let temp = this.tetrimino;
+      this.tetrimino = this.heldTetris;
+      this.heldTetris = temp;
+    }
   }
 
   /**
