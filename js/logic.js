@@ -25,6 +25,9 @@ class Logic {
   /**@var {string} heldTetris The tetrimino the player is holidng */
   heldTetris = "";
 
+  /**@var {bool} heldThisRound True if hold a tetrimino this round to prevent continiously switching */
+  heldThisRound = false;
+
   constructor() {
     // An object to reference colors
     this.tetriminos = {
@@ -266,6 +269,7 @@ class Logic {
 
     // Set active tetrimino to the first upcoming tetrimino
     this.tetrimino = this.newTetri();
+    this.heldThisRound = false;
 
     this.checkRows();
 
@@ -308,14 +312,17 @@ class Logic {
   }
 
   hold() {
-    if (this.heldTetris === "") {
-      this.heldTetris = this.tetrimino;
-      this.tetrimino = this.newTetri();
-    } else {
-      // Switch between held tetris and the current tetris
-      let temp = this.tetrimino;
-      this.tetrimino = this.heldTetris;
-      this.heldTetris = temp;
+    if (!this.heldThisRound) {
+      if (this.heldTetris === "") {
+        this.heldTetris = this.tetrimino;
+        this.tetrimino = this.newTetri();
+      } else {
+        // Switch between held tetris and the current tetris
+        let temp = this.tetrimino;
+        this.tetrimino = this.heldTetris;
+        this.heldTetris = temp;
+      }
+      this.heldThisRound = true;
     }
   }
 
