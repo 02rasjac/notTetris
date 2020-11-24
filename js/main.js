@@ -8,7 +8,7 @@ let timeID_moveDown;
 function setup() {
   createCanvas(400, 400);
   logic = new Logic();
-  pc = new PlayerControl(logic);
+  // pc = new PlayerControl(logic);
 
   //! TESTING
   logic.spawnTetri();
@@ -35,18 +35,20 @@ function draw() {
 
 function keyPressed() {
   if (keyCode === 65) {
-    pc.rotateLeft();
+    logic.pc.rotateLeft();
   } else if (keyCode === 68) {
-    pc.rotateRight();
+    logic.pc.rotateRight();
   } else if (keyCode === DOWN_ARROW) {
-    pc.moveDown();
+    logic.pc.moveDown();
     timeID_moveDown = setTimeout(function () {
       logic.speed = 50;
     }, 150);
   } else if (keyCode === LEFT_ARROW) {
-    pc.moveLeft();
+    logic.pc.moveLeft();
   } else if (keyCode === RIGHT_ARROW) {
-    pc.moveRight();
+    logic.pc.moveRight();
+  } else if (keyCode === 32) {
+    logic.pc.smash();
   }
 }
 

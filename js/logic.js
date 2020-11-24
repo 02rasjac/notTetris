@@ -45,6 +45,7 @@ class Logic {
     this.reset();
     this.blocks = new Blocks(this);
     this.score = new Score();
+    this.pc = new PlayerControl();
   }
 
   /**
@@ -267,6 +268,8 @@ class Logic {
 
     // Change spped to normal
     this.speed = this.calculateSpeed();
+
+    this.pc.isSmashing = false;
   }
 
   /**
