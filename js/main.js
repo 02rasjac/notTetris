@@ -10,7 +10,11 @@ function setup() {
 }
 
 function draw() {
-  background(30);
+  background(45);
+  strokeWeight(2);
+  line(100, 0, 100, 400);
+  line(300, 0, 300, 400);
+  strokeWeight(1);
 
   if (logic.hasEnded) {
     textSize(32);
