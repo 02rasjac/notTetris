@@ -262,6 +262,9 @@ class Logic {
     this.tetrimino = this.newTetri();
     this.heldThisRound = false;
 
+    this.hitLeftBlock = false;
+    this.hitRightBlock = false;
+
     this.checkRows();
 
     // Change spped to normal
