@@ -306,7 +306,7 @@ class Logic {
    * Move the current tetrimino to the held-position and change the current to the next tetrimino, or if available, the held tetrimino
    */
   hold() {
-    if (!this.heldThisRound) {
+    if (!this.heldThisRound && !this.pc.isSmashing) {
       this.spawnTetri();
 
       if (this.heldTetris === "") {
