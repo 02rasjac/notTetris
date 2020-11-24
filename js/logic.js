@@ -40,13 +40,6 @@ class Logic {
       L: color(255, 128, 0), // Orange
     };
 
-    // Initilise the upcoming tetris
-    for (let i = 0; i < 4; i++) {
-      this.newTetri(true);
-    }
-
-    this.tetrimino = this.newTetri();
-
     // Create the board as an array
     this.reset();
     this.blocks = new Blocks(this);
@@ -55,7 +48,7 @@ class Logic {
   }
 
   /**
-   * Controll the board for blocks
+   * Control the board for blocks
    *
    * @returns {void}
    */
@@ -164,7 +157,7 @@ class Logic {
   /**
    * Check if the tetrimino collided and prevent it from going through
    *
-   * @param {int} minCol The smalles column the tetrimino can have based on rotatino
+   * @param {int} minCol The smalles column the tetrimino can have based on rotation
    * @param {int} maxCol The largest column the tetrimino can be in based on rotation
    * @param {int} maxRow The largest row the tetrimino can be in based on rotation
    */
@@ -196,9 +189,7 @@ class Logic {
       if (signBelow[0] != "*" && signBelow != "") {
         this.hitBlock = true;
       }
-    } catch {
-      // TODO: Maybe move floor-collision here
-    }
+    } catch {}
 
     // Check if there is a block to the left
     try {
@@ -220,7 +211,7 @@ class Logic {
   }
 
   /**
-   * Let the tetrimino fall at normal speed
+   * Let the tetrimino fall
    */
   gravity(forceRun = false) {
     this.fallTimer += deltaTime;
@@ -311,6 +302,9 @@ class Logic {
     return nextTetri;
   }
 
+  /**
+   * Move the current tetrimino to the held-position and change the current to the next tetrimino, or if available, the held tetrimino
+   */
   hold() {
     if (!this.heldThisRound) {
       this.spawnTetri();
@@ -376,7 +370,7 @@ class Logic {
   }
 
   /**
-   * Reset the board to an all empty
+   * Reset the game
    */
   reset() {
     this.board = [];
@@ -389,6 +383,13 @@ class Logic {
       this.board.push(row);
     }
     this.speed = this.startingSpeed;
+
+    // Initilise the upcoming tetris
+    for (let i = 0; i < 4; i++) {
+      this.newTetri(true);
+    }
+
+    this.tetrimino = this.newTetri();
   }
 
   /** Calculate the speed based on the level */

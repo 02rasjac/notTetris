@@ -16,6 +16,9 @@ class Blocks {
     rect(x, y, 20, 20);
   }
 
+  /**
+   * Render the upcoming blocks
+   */
   drawUpcomingBlocks() {
     let x = 350;
     let y = 20;
