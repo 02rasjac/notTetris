@@ -313,6 +313,8 @@ class Logic {
 
   hold() {
     if (!this.heldThisRound) {
+      this.spawnTetri();
+
       if (this.heldTetris === "") {
         this.heldTetris = this.tetrimino;
         this.tetrimino = this.newTetri();
