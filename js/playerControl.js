@@ -35,7 +35,8 @@ class PlayerControl {
    * Lock rotation and x-movement and increase speed
    */
   smash() {
-    logic.speed = 18;
+    //* The fastest possible to not break collision
+    logic.speed = 14;
     this.isSmashing = true;
   }
 
