@@ -124,7 +124,6 @@ class Blocks {
     const sign = "I";
     let position = [];
     if (logic.rotation == 1) {
-      //logic.checkBorderCollision(0, 9, 17);
       position = [
         [0, 0],
         [1, 0],
@@ -132,7 +131,6 @@ class Blocks {
         [2, 0],
       ];
     } else if (logic.rotation == 2) {
-      //logic.checkBorderCollision(2, 8, 18);
       position = [
         [1, 0],
         [1, -1],
@@ -140,7 +138,6 @@ class Blocks {
         [1, -2],
       ];
     } else if (logic.rotation == 3) {
-      //logic.checkBorderCollision(1, 10, 17);
       position = [
         [0, -1],
         [1, -1],
@@ -148,7 +145,6 @@ class Blocks {
         [2, -1],
       ];
     } else if (logic.rotation == 4) {
-      //logic.checkBorderCollision(2, 8, 19);
       position = [
         [0, 0],
         [0, -1],
@@ -167,7 +163,6 @@ class Blocks {
     const sign = "J";
     let position = [];
     if (logic.rotation == 1) {
-      //logic.checkBorderCollision(1, 8, 19);
       position = [
         [0, 0],
         [0, -1],
@@ -175,7 +170,6 @@ class Blocks {
         [0, 1],
       ];
     } else if (logic.rotation == 2) {
-      //logic.checkBorderCollision(0, 8, 18);
       position = [
         [0, 0],
         [-1, 0],
@@ -183,7 +177,6 @@ class Blocks {
         [1, 0],
       ];
     } else if (logic.rotation == 3) {
-      //logic.checkBorderCollision(1, 8, 18);
       position = [
         [0, 0],
         [0, -1],
@@ -191,7 +184,6 @@ class Blocks {
         [1, 1],
       ];
     } else if (logic.rotation == 4) {
-      //logic.checkBorderCollision(1, 9, 18);
       position = [
         [0, 0],
         [-1, 0],
@@ -210,7 +202,6 @@ class Blocks {
     const sign = "L";
     let position = [];
     if (logic.rotation == 1) {
-      //logic.checkBorderCollision(1, 8, 19);
       position = [
         [0, 0],
         [0, -1],
@@ -218,7 +209,6 @@ class Blocks {
         [0, 1],
       ];
     } else if (logic.rotation == 2) {
-      //logic.checkBorderCollision(0, 8, 18);
       position = [
         [0, 0],
         [-1, 0],
@@ -226,7 +216,6 @@ class Blocks {
         [1, 0],
       ];
     } else if (logic.rotation == 3) {
-      //logic.checkBorderCollision(1, 8, 18);
       position = [
         [0, 0],
         [0, -1],
@@ -234,7 +223,6 @@ class Blocks {
         [1, -1],
       ];
     } else if (logic.rotation == 4) {
-      //logic.checkBorderCollision(1, 9, 18);
       position = [
         [0, 0],
         [-1, 0],
@@ -252,7 +240,6 @@ class Blocks {
   o() {
     const sign = "O";
     let position = [];
-    //logic.checkBorderCollision(1, 9, 19);
     position = [
       [0, 0],
       [-1, 0],
@@ -270,7 +257,6 @@ class Blocks {
     const sign = "S";
     let position = [];
     if (logic.rotation == 1) {
-      //logic.checkBorderCollision(1, 8, 19);
       position = [
         [0, 0],
         [0, -1],
@@ -278,7 +264,6 @@ class Blocks {
         [-1, 1],
       ];
     } else if (logic.rotation == 2) {
-      //logic.checkBorderCollision(0, 8, 18);
       position = [
         [0, 0],
         [-1, 0],
@@ -286,7 +271,6 @@ class Blocks {
         [1, 1],
       ];
     } else if (logic.rotation == 3) {
-      //logic.checkBorderCollision(1, 8, 18);
       position = [
         [0, 0],
         [0, 1],
@@ -294,7 +278,6 @@ class Blocks {
         [1, -1],
       ];
     } else if (logic.rotation == 4) {
-      //logic.checkBorderCollision(1, 9, 18);
       position = [
         [0, 0],
         [1, 0],
@@ -313,7 +296,6 @@ class Blocks {
     const sign = "T";
     let position = [];
     if (logic.rotation == 1) {
-      //logic.checkBorderCollision(1, 8, 19);
       position = [
         [0, 0],
         [0, -1],
@@ -321,7 +303,6 @@ class Blocks {
         [-1, 0],
       ];
     } else if (logic.rotation == 2) {
-      //logic.checkBorderCollision(0, 8, 18);
       position = [
         [0, 0],
         [-1, 0],
@@ -329,7 +310,6 @@ class Blocks {
         [0, 1],
       ];
     } else if (logic.rotation == 3) {
-      //logic.checkBorderCollision(1, 8, 18);
       position = [
         [0, 0],
         [0, 1],
@@ -337,7 +317,6 @@ class Blocks {
         [1, 0],
       ];
     } else if (logic.rotation == 4) {
-      //logic.checkBorderCollision(1, 9, 18);
       position = [
         [0, 0],
         [1, 0],
@@ -356,7 +335,6 @@ class Blocks {
     const sign = "Z";
     let position = [];
     if (logic.rotation == 1) {
-      //logic.checkBorderCollision(1, 8, 19);
       position = [
         [0, 0],
         [0, 1],
@@ -364,7 +342,6 @@ class Blocks {
         [-1, -1],
       ];
     } else if (logic.rotation == 2) {
-      //logic.checkBorderCollision(0, 8, 18);
       position = [
         [0, 0],
         [1, 0],
@@ -372,7 +349,6 @@ class Blocks {
         [-1, 1],
       ];
     } else if (logic.rotation == 3) {
-      //logic.checkBorderCollision(1, 8, 18);
       position = [
         [0, 0],
         [0, -1],
@@ -380,7 +356,6 @@ class Blocks {
         [1, 1],
       ];
     } else if (logic.rotation == 4) {
-      //logic.checkBorderCollision(1, 9, 18);
       position = [
         [0, 0],
         [0, -1],
