@@ -1,9 +1,6 @@
 class Logic {
-  /**@var {bool} hitFloor A flag wheter the tetri collided with floor */
-  hitFloor = false;
-
-  /**@var {bool} hitBlock A flag wheter the tetri collided with another block */
-  hitBlock = false;
+  /**@var {bool} dead A flag wheter the tetri collided with another block */
+  dead = false;
 
   /**@var {int} startingSpeed The speed at which the game starts at */
   startingSpeed = 1000;
@@ -165,9 +162,9 @@ class Logic {
     this.fallTimer += deltaTime;
     if (this.fallTimer >= this.speed || forceRun) {
       // Kill tetri if hit block
-      if (this.hitBlock) {
+      if (this.dead) {
         this.killTetri();
-        this.hitBlock = false;
+        this.dead = false;
         this.spawnTetri();
       } else {
         this.activeRow++;
@@ -308,13 +305,6 @@ class Logic {
         break;
       default:
         break;
-    }
-
-    // If collision bottom; Kill it
-    if (this.hitFloor) {
-      this.killTetri();
-      this.hitFloor = false;
-      this.spawnTetri();
     }
   }
 

@@ -63,7 +63,7 @@ class Blocks {
           ];
       } catch (error) {
         logic.activeRow--;
-        logic.hitFloor = true;
+        logic.dead = true;
         break;
       }
 
@@ -102,7 +102,7 @@ class Blocks {
       if (sign !== "") {
         console.log("BLOCKED ON BLOCK");
         isBlocked = true;
-        logic.hitBlock = true;
+        logic.dead = true;
         logic.activeRow--;
       }
     }
