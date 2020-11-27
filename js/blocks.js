@@ -40,199 +40,294 @@ class Blocks {
   }
 
   /**
+   * Generate tetriminos with blocks.
+   * @param {array} blocks 2D-array with relative coordination to the rotation-point. [row, col]
+   * @param {string} sign Character representing the color
+   */
+  generate(blocks, sign) {
+    // Just in case sign is put in with an *
+    sign = sign.length > 1 ? sign : `*${sign}`;
+    sign = sign.toUpperCase();
+
+    blocks.forEach((block) => {
+      logic.board[logic.activeRow + block[0]][
+        logic.activeCol + block[1]
+      ] = sign;
+    });
+  }
+
+  /**
    * Make a straight tetrimino
    */
   i() {
+    const sign = "I";
+    let position = [];
     if (logic.rotation == 1) {
       logic.checkBorderCollision(0, 9, 17);
-      logic.board[logic.activeRow][logic.activeCol] = "*I";
-      logic.board[logic.activeRow + 1][logic.activeCol] = "*I";
-      logic.board[logic.activeRow - 1][logic.activeCol] = "*I";
-      logic.board[logic.activeRow + 2][logic.activeCol] = "*I";
+      position = [
+        [0, 0],
+        [1, 0],
+        [-1, 0],
+        [2, 0],
+      ];
     } else if (logic.rotation == 2) {
       logic.checkBorderCollision(2, 8, 18);
-      logic.board[logic.activeRow + 1][logic.activeCol] = "*I";
-      logic.board[logic.activeRow + 1][logic.activeCol - 1] = "*I";
-      logic.board[logic.activeRow + 1][logic.activeCol + 1] = "*I";
-      logic.board[logic.activeRow + 1][logic.activeCol - 2] = "*I";
+      position = [
+        [1, 0],
+        [1, -1],
+        [1, 1],
+        [1, -2],
+      ];
     } else if (logic.rotation == 3) {
       logic.checkBorderCollision(1, 10, 17);
-      logic.board[logic.activeRow][logic.activeCol - 1] = "*I";
-      logic.board[logic.activeRow + 1][logic.activeCol - 1] = "*I";
-      logic.board[logic.activeRow - 1][logic.activeCol - 1] = "*I";
-      logic.board[logic.activeRow + 2][logic.activeCol - 1] = "*I";
+      position = [
+        [0, -1],
+        [1, -1],
+        [-1, -1],
+        [2, -1],
+      ];
     } else if (logic.rotation == 4) {
       logic.checkBorderCollision(2, 8, 19);
-      logic.board[logic.activeRow][logic.activeCol] = "*I";
-      logic.board[logic.activeRow][logic.activeCol - 1] = "*I";
-      logic.board[logic.activeRow][logic.activeCol + 1] = "*I";
-      logic.board[logic.activeRow][logic.activeCol - 2] = "*I";
+      position = [
+        [0, 0],
+        [0, -1],
+        [0, 1],
+        [0, -2],
+      ];
     }
+
+    this.generate(position, sign);
   }
 
   /**
    * Make a J-tetrimino
    */
   j() {
+    const sign = "J";
+    let position = [];
     if (logic.rotation == 1) {
       logic.checkBorderCollision(1, 8, 19);
-      logic.board[logic.activeRow][logic.activeCol] = "*J";
-      logic.board[logic.activeRow][logic.activeCol - 1] = "*J";
-      logic.board[logic.activeRow - 1][logic.activeCol - 1] = "*J";
-      logic.board[logic.activeRow][logic.activeCol + 1] = "*J";
+      position = [
+        [0, 0],
+        [0, -1],
+        [-1, -1],
+        [0, 1],
+      ];
     } else if (logic.rotation == 2) {
       logic.checkBorderCollision(0, 8, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*J";
-      logic.board[logic.activeRow - 1][logic.activeCol] = "*J";
-      logic.board[logic.activeRow - 1][logic.activeCol + 1] = "*J";
-      logic.board[logic.activeRow + 1][logic.activeCol] = "*J";
+      position = [
+        [0, 0],
+        [-1, 0],
+        [-1, 1],
+        [1, 0],
+      ];
     } else if (logic.rotation == 3) {
       logic.checkBorderCollision(1, 8, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*J";
-      logic.board[logic.activeRow][logic.activeCol - 1] = "*J";
-      logic.board[logic.activeRow][logic.activeCol + 1] = "*J";
-      logic.board[logic.activeRow + 1][logic.activeCol + 1] = "*J";
+      position = [
+        [0, 0],
+        [0, -1],
+        [0, 1],
+        [1, 1],
+      ];
     } else if (logic.rotation == 4) {
       logic.checkBorderCollision(1, 9, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*J";
-      logic.board[logic.activeRow - 1][logic.activeCol] = "*J";
-      logic.board[logic.activeRow + 1][logic.activeCol - 1] = "*J";
-      logic.board[logic.activeRow + 1][logic.activeCol] = "*J";
+      position = [
+        [0, 0],
+        [-1, 0],
+        [1, -1],
+        [1, 0],
+      ];
     }
+
+    this.generate(position, sign);
   }
 
   /**
    * Make a L-tetrimino
    */
   l() {
+    const sign = "L";
+    let position = [];
     if (logic.rotation == 1) {
       logic.checkBorderCollision(1, 8, 19);
-      logic.board[logic.activeRow][logic.activeCol] = "*L";
-      logic.board[logic.activeRow][logic.activeCol - 1] = "*L";
-      logic.board[logic.activeRow - 1][logic.activeCol + 1] = "*L";
-      logic.board[logic.activeRow][logic.activeCol + 1] = "*L";
+      position = [
+        [0, 0],
+        [0, -1],
+        [-1, 1],
+        [0, 1],
+      ];
     } else if (logic.rotation == 2) {
       logic.checkBorderCollision(0, 8, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*L";
-      logic.board[logic.activeRow - 1][logic.activeCol] = "*L";
-      logic.board[logic.activeRow + 1][logic.activeCol + 1] = "*L";
-      logic.board[logic.activeRow + 1][logic.activeCol] = "*L";
+      position = [
+        [0, 0],
+        [-1, 0],
+        [1, 1],
+        [1, 0],
+      ];
     } else if (logic.rotation == 3) {
       logic.checkBorderCollision(1, 8, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*L";
-      logic.board[logic.activeRow][logic.activeCol - 1] = "*L";
-      logic.board[logic.activeRow][logic.activeCol + 1] = "*L";
-      logic.board[logic.activeRow + 1][logic.activeCol - 1] = "*L";
+      position = [
+        [0, 0],
+        [0, -1],
+        [0, 1],
+        [1, -1],
+      ];
     } else if (logic.rotation == 4) {
       logic.checkBorderCollision(1, 9, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*L";
-      logic.board[logic.activeRow - 1][logic.activeCol] = "*L";
-      logic.board[logic.activeRow - 1][logic.activeCol - 1] = "*L";
-      logic.board[logic.activeRow + 1][logic.activeCol] = "*L";
+      position = [
+        [0, 0],
+        [-1, 0],
+        [-1, -1],
+        [1, 0],
+      ];
     }
+
+    this.generate(position, sign);
   }
 
   /**
    * Render a square tetrimino
    */
   o() {
+    const sign = "O";
+    let position = [];
     logic.checkBorderCollision(1, 9, 19);
-    logic.board[logic.activeRow][logic.activeCol] = "*O";
-    logic.board[logic.activeRow - 1][logic.activeCol] = "*O";
-    logic.board[logic.activeRow - 1][logic.activeCol - 1] = "*O";
-    logic.board[logic.activeRow][logic.activeCol - 1] = "*O";
+    position = [
+      [0, 0],
+      [-1, 0],
+      [-1, -1],
+      [0, -1],
+    ];
+
+    this.generate(position, sign);
   }
 
   /**
    * Make a S-tetrimino
    */
   s() {
+    const sign = "S";
+    let position = [];
     if (logic.rotation == 1) {
       logic.checkBorderCollision(1, 8, 19);
-      logic.board[logic.activeRow][logic.activeCol] = "*S";
-      logic.board[logic.activeRow][logic.activeCol - 1] = "*S";
-      logic.board[logic.activeRow - 1][logic.activeCol] = "*S";
-      logic.board[logic.activeRow - 1][logic.activeCol + 1] = "*S";
+      position = [
+        [0, 0],
+        [0, -1],
+        [-1, 0],
+        [-1, 1],
+      ];
     } else if (logic.rotation == 2) {
       logic.checkBorderCollision(0, 8, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*S";
-      logic.board[logic.activeRow - 1][logic.activeCol] = "*S";
-      logic.board[logic.activeRow][logic.activeCol + 1] = "*S";
-      logic.board[logic.activeRow + 1][logic.activeCol + 1] = "*S";
+      position = [
+        [0, 0],
+        [-1, 0],
+        [0, 1],
+        [1, 1],
+      ];
     } else if (logic.rotation == 3) {
       logic.checkBorderCollision(1, 8, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*S";
-      logic.board[logic.activeRow][logic.activeCol + 1] = "*S";
-      logic.board[logic.activeRow + 1][logic.activeCol] = "*S";
-      logic.board[logic.activeRow + 1][logic.activeCol - 1] = "*S";
+      position = [
+        [0, 0],
+        [0, 1],
+        [1, 0],
+        [1, -1],
+      ];
     } else if (logic.rotation == 4) {
       logic.checkBorderCollision(1, 9, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*S";
-      logic.board[logic.activeRow + 1][logic.activeCol] = "*S";
-      logic.board[logic.activeRow][logic.activeCol - 1] = "*S";
-      logic.board[logic.activeRow - 1][logic.activeCol - 1] = "*S";
+      position = [
+        [0, 0],
+        [1, 0],
+        [0, -1],
+        [-1, -1],
+      ];
     }
+
+    this.generate(position, sign);
   }
 
   /**
    * Make a T-tetrimino
    */
   t() {
+    const sign = "T";
+    let position = [];
     if (logic.rotation == 1) {
       logic.checkBorderCollision(1, 8, 19);
-      logic.board[logic.activeRow][logic.activeCol] = "*T";
-      logic.board[logic.activeRow][logic.activeCol - 1] = "*T";
-      logic.board[logic.activeRow][logic.activeCol + 1] = "*T";
-      logic.board[logic.activeRow - 1][logic.activeCol] = "*T";
+      position = [
+        [0, 0],
+        [0, -1],
+        [0, 1],
+        [-1, 0],
+      ];
     } else if (logic.rotation == 2) {
       logic.checkBorderCollision(0, 8, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*T";
-      logic.board[logic.activeRow - 1][logic.activeCol] = "*T";
-      logic.board[logic.activeRow + 1][logic.activeCol] = "*T";
-      logic.board[logic.activeRow][logic.activeCol + 1] = "*T";
+      position = [
+        [0, 0],
+        [-1, 0],
+        [1, 0],
+        [0, 1],
+      ];
     } else if (logic.rotation == 3) {
       logic.checkBorderCollision(1, 8, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*T";
-      logic.board[logic.activeRow][logic.activeCol + 1] = "*T";
-      logic.board[logic.activeRow][logic.activeCol - 1] = "*T";
-      logic.board[logic.activeRow + 1][logic.activeCol] = "*T";
+      position = [
+        [0, 0],
+        [0, 1],
+        [0, -1],
+        [1, 0],
+      ];
     } else if (logic.rotation == 4) {
       logic.checkBorderCollision(1, 9, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*T";
-      logic.board[logic.activeRow + 1][logic.activeCol] = "*T";
-      logic.board[logic.activeRow - 1][logic.activeCol] = "*T";
-      logic.board[logic.activeRow][logic.activeCol - 1] = "*T";
+      position = [
+        [0, 0],
+        [1, 0],
+        [-1, 0],
+        [0, -1],
+      ];
     }
+
+    this.generate(position, sign);
   }
 
   /**
    * Make a Z-tetrimino
    */
   z() {
+    const sign = "Z";
+    let position = [];
     if (logic.rotation == 1) {
       logic.checkBorderCollision(1, 8, 19);
-      logic.board[logic.activeRow][logic.activeCol] = "*Z";
-      logic.board[logic.activeRow][logic.activeCol + 1] = "*Z";
-      logic.board[logic.activeRow - 1][logic.activeCol] = "*Z";
-      logic.board[logic.activeRow - 1][logic.activeCol - 1] = "*Z";
+      position = [
+        [0, 0],
+        [0, 1],
+        [-1, 0],
+        [-1, -1],
+      ];
     } else if (logic.rotation == 2) {
       logic.checkBorderCollision(0, 8, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*Z";
-      logic.board[logic.activeRow + 1][logic.activeCol] = "*Z";
-      logic.board[logic.activeRow][logic.activeCol + 1] = "*Z";
-      logic.board[logic.activeRow - 1][logic.activeCol + 1] = "*Z";
+      position = [
+        [0, 0],
+        [1, 0],
+        [0, 1],
+        [-1, 1],
+      ];
     } else if (logic.rotation == 3) {
       logic.checkBorderCollision(1, 8, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*Z";
-      logic.board[logic.activeRow][logic.activeCol - 1] = "*Z";
-      logic.board[logic.activeRow + 1][logic.activeCol] = "*Z";
-      logic.board[logic.activeRow + 1][logic.activeCol + 1] = "*Z";
+      position = [
+        [0, 0],
+        [0, -1],
+        [1, 0],
+        [1, 1],
+      ];
     } else if (logic.rotation == 4) {
       logic.checkBorderCollision(1, 9, 18);
-      logic.board[logic.activeRow][logic.activeCol] = "*1";
-      logic.board[logic.activeRow][logic.activeCol - 1] = "*1";
-      logic.board[logic.activeRow + 1][logic.activeCol - 1] = "*1";
-      logic.board[logic.activeRow - 1][logic.activeCol] = "*1";
+      position = [
+        [0, 0],
+        [0, -1],
+        [1, -1],
+        [-1, 0],
+      ];
     }
+
+    this.generate(position, sign);
   }
 }
