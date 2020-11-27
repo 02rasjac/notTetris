@@ -49,11 +49,33 @@ class Blocks {
     sign = sign.length > 1 ? sign : `*${sign}`;
     sign = sign.toUpperCase();
 
+    let isBlocked = false;
+
+    // Prevent rotating through other tetriminos
     blocks.forEach((block) => {
-      logic.board[logic.activeRow + block[0]][
-        logic.activeCol + block[1]
-      ] = sign;
+      let sign =
+        logic.board[logic.activeRow + block[0]][logic.activeCol + block[1]];
+
+      if (sign !== "") {
+        isBlocked = true;
+        if (logic.rotated === "R") {
+          logic.rotated = "";
+          logic.rotation--;
+        } else if (logic.rotated === "L") {
+          logic.rotated = "";
+          logic.rotation++;
+        }
+      }
     });
+
+    // Generate the blocks if not blocked
+    if (!isBlocked) {
+      blocks.forEach((block) => {
+        logic.board[logic.activeRow + block[0]][
+          logic.activeCol + block[1]
+        ] = sign;
+      });
+    }
   }
 
   /**

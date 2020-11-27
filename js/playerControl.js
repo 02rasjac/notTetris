@@ -46,6 +46,8 @@ class PlayerControl {
     } else {
       logic.rotation = 4;
     }
+
+    logic.rotated = "L";
   }
 
   /**
@@ -57,5 +59,7 @@ class PlayerControl {
     } else {
       logic.rotation = 1;
     }
+
+    logic.rotated = "R";
   }
 }

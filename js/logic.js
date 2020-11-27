@@ -28,6 +28,9 @@ class Logic {
   /**@var {bool} heldThisRound True if hold a tetrimino this round to prevent continiously switching */
   heldThisRound = false;
 
+  /**@var {string} rotated Char for wich direction the player rotated (L/R) */
+  rotated = "";
+
   constructor() {
     // An object to reference colors
     this.tetriminos = {
