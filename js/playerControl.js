@@ -6,20 +6,22 @@ class PlayerControl {
    * Move the tetrimino to the Left
    */
   moveLeft() {
-    if (!logic.hitLeftBlock && !this.isSmashing) {
+    if (!this.isSmashing) {
+      logic.rotated = "";
+      logic.moved = "L";
       logic.activeCol--;
     }
-    logic.hitLeftBlock = false;
   }
 
   /**
    * Move the tetrimino to the Right
    */
   moveRight() {
-    if (!logic.hitRightBlock && !this.isSmashing) {
+    if (!this.isSmashing) {
+      logic.rotated = "";
+      logic.moved = "R";
       logic.activeCol++;
     }
-    logic.hitRightBlock = false;
   }
 
   /**
@@ -47,6 +49,7 @@ class PlayerControl {
       logic.rotation = 4;
     }
 
+    logic.moved = "";
     logic.rotated = "L";
   }
 
@@ -60,6 +63,7 @@ class PlayerControl {
       logic.rotation = 1;
     }
 
+    logic.moved = "";
     logic.rotated = "R";
   }
 }

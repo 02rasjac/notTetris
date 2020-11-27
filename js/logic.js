@@ -31,6 +31,9 @@ class Logic {
   /**@var {string} rotated Char for wich direction the player rotated (L/R) */
   rotated = "";
 
+  /**@var {string} moved Char for wich direction the player moved (L/R) */
+  moved = "";
+
   constructor() {
     // An object to reference colors
     this.tetriminos = {
@@ -76,8 +79,6 @@ class Logic {
 
           // If the sign first char is *; empty it
           if (sign[0] == "*") {
-            this.checkBorderCollision();
-            this.checkBlockCollision(i, j);
             this.board[i][j] = "";
           }
         }
@@ -158,62 +159,6 @@ class Logic {
   }
 
   /**
-   * Check if the tetrimino collided and prevent it from going through
-   *
-   * @param {int} minCol The smalles column the tetrimino can have based on rotation
-   * @param {int} maxCol The largest column the tetrimino can be in based on rotation
-   * @param {int} maxRow The largest row the tetrimino can be in based on rotation
-   */
-  checkBorderCollision(minCol, maxCol, maxRow) {
-    // Check collision with walls
-    if (this.activeCol < minCol) {
-      this.activeCol = minCol;
-    } else if (this.activeCol > maxCol) {
-      this.activeCol = maxCol;
-    }
-
-    // Check collision with floor
-    if (this.activeRow > maxRow) {
-      this.activeRow = maxRow;
-      this.hitFloor = true;
-    }
-  }
-
-  /**
-   * Check wheter there is a block below the active block.
-   * @param {int} row The Row for the current block to check
-   * @param {int} col The column for the current block to check
-   */
-  checkBlockCollision(row, col) {
-    // Check if there is a block below an active block
-    try {
-      let signBelow = this.board[row + 1][col];
-
-      if (signBelow[0] != "*" && signBelow != "") {
-        this.hitBlock = true;
-      }
-    } catch {}
-
-    // Check if there is a block to the left
-    try {
-      let signLeft = this.board[row][col - 1];
-
-      if (signLeft[0] != "*" && signLeft != "") {
-        this.hitLeftBlock = true;
-      }
-    } catch {}
-
-    // Check if there is a block to the right
-    try {
-      let signRight = this.board[row][col + 1];
-
-      if (signRight[0] != "*" && signRight != "") {
-        this.hitRightBlock = true;
-      }
-    } catch {}
-  }
-
-  /**
    * Let the tetrimino fall
    */
   gravity(forceRun = false) {
@@ -227,6 +172,8 @@ class Logic {
       } else {
         this.activeRow++;
       }
+      this.rotated = "";
+      this.moved = "";
       this.fallTimer = 0;
     }
   }
@@ -267,6 +214,9 @@ class Logic {
 
     this.hitLeftBlock = false;
     this.hitRightBlock = false;
+
+    this.rotated = "";
+    this.moved = "";
 
     this.checkRows();
 

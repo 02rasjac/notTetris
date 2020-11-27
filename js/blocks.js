@@ -51,22 +51,61 @@ class Blocks {
 
     let isBlocked = false;
 
-    // Prevent rotating through other tetriminos
-    blocks.forEach((block) => {
-      let sign =
-        logic.board[logic.activeRow + block[0]][logic.activeCol + block[1]];
+    // Collide
+    for (let i = 0; i < blocks.length; i++) {
+      let sign = "";
 
-      if (sign !== "") {
+      // Collision with floor
+      try {
+        sign =
+          logic.board[logic.activeRow + blocks[i][0]][
+            logic.activeCol + blocks[i][1]
+          ];
+      } catch (error) {
+        logic.activeRow--;
+        logic.hitFloor = true;
+        break;
+      }
+
+      // Stop rotation on blocks and walls
+      if ((sign !== "" || sign === undefined) && logic.rotated !== "") {
+        console.log("BLOCKED ON ROTATE");
         isBlocked = true;
         if (logic.rotated === "R") {
           logic.rotated = "";
-          logic.rotation--;
+          if (logic.rotation != 1) {
+            logic.rotation--;
+          } else {
+            logic.rotation = 4;
+          }
         } else if (logic.rotated === "L") {
           logic.rotated = "";
-          logic.rotation++;
+          if (logic.rotation != 4) {
+            logic.rotation++;
+          } else {
+            logic.rotation = 1;
+          }
         }
+        break;
       }
-    });
+
+      // Stop movement on walls and blocks
+      if ((sign !== "" || sign === undefined) && logic.moved !== "") {
+        console.log("BLOCKED ON MOVE");
+        isBlocked = true;
+        if (logic.moved === "L") logic.activeCol++;
+        else if (logic.moved === "R") logic.activeCol--;
+        logic.moved = "";
+        break;
+      }
+
+      if (sign !== "") {
+        console.log("BLOCKED ON BLOCK");
+        isBlocked = true;
+        logic.hitBlock = true;
+        logic.activeRow--;
+      }
+    }
 
     // Generate the blocks if not blocked
     if (!isBlocked) {
@@ -85,7 +124,7 @@ class Blocks {
     const sign = "I";
     let position = [];
     if (logic.rotation == 1) {
-      logic.checkBorderCollision(0, 9, 17);
+      //logic.checkBorderCollision(0, 9, 17);
       position = [
         [0, 0],
         [1, 0],
@@ -93,7 +132,7 @@ class Blocks {
         [2, 0],
       ];
     } else if (logic.rotation == 2) {
-      logic.checkBorderCollision(2, 8, 18);
+      //logic.checkBorderCollision(2, 8, 18);
       position = [
         [1, 0],
         [1, -1],
@@ -101,7 +140,7 @@ class Blocks {
         [1, -2],
       ];
     } else if (logic.rotation == 3) {
-      logic.checkBorderCollision(1, 10, 17);
+      //logic.checkBorderCollision(1, 10, 17);
       position = [
         [0, -1],
         [1, -1],
@@ -109,7 +148,7 @@ class Blocks {
         [2, -1],
       ];
     } else if (logic.rotation == 4) {
-      logic.checkBorderCollision(2, 8, 19);
+      //logic.checkBorderCollision(2, 8, 19);
       position = [
         [0, 0],
         [0, -1],
@@ -128,7 +167,7 @@ class Blocks {
     const sign = "J";
     let position = [];
     if (logic.rotation == 1) {
-      logic.checkBorderCollision(1, 8, 19);
+      //logic.checkBorderCollision(1, 8, 19);
       position = [
         [0, 0],
         [0, -1],
@@ -136,7 +175,7 @@ class Blocks {
         [0, 1],
       ];
     } else if (logic.rotation == 2) {
-      logic.checkBorderCollision(0, 8, 18);
+      //logic.checkBorderCollision(0, 8, 18);
       position = [
         [0, 0],
         [-1, 0],
@@ -144,7 +183,7 @@ class Blocks {
         [1, 0],
       ];
     } else if (logic.rotation == 3) {
-      logic.checkBorderCollision(1, 8, 18);
+      //logic.checkBorderCollision(1, 8, 18);
       position = [
         [0, 0],
         [0, -1],
@@ -152,7 +191,7 @@ class Blocks {
         [1, 1],
       ];
     } else if (logic.rotation == 4) {
-      logic.checkBorderCollision(1, 9, 18);
+      //logic.checkBorderCollision(1, 9, 18);
       position = [
         [0, 0],
         [-1, 0],
@@ -171,7 +210,7 @@ class Blocks {
     const sign = "L";
     let position = [];
     if (logic.rotation == 1) {
-      logic.checkBorderCollision(1, 8, 19);
+      //logic.checkBorderCollision(1, 8, 19);
       position = [
         [0, 0],
         [0, -1],
@@ -179,7 +218,7 @@ class Blocks {
         [0, 1],
       ];
     } else if (logic.rotation == 2) {
-      logic.checkBorderCollision(0, 8, 18);
+      //logic.checkBorderCollision(0, 8, 18);
       position = [
         [0, 0],
         [-1, 0],
@@ -187,7 +226,7 @@ class Blocks {
         [1, 0],
       ];
     } else if (logic.rotation == 3) {
-      logic.checkBorderCollision(1, 8, 18);
+      //logic.checkBorderCollision(1, 8, 18);
       position = [
         [0, 0],
         [0, -1],
@@ -195,7 +234,7 @@ class Blocks {
         [1, -1],
       ];
     } else if (logic.rotation == 4) {
-      logic.checkBorderCollision(1, 9, 18);
+      //logic.checkBorderCollision(1, 9, 18);
       position = [
         [0, 0],
         [-1, 0],
@@ -213,7 +252,7 @@ class Blocks {
   o() {
     const sign = "O";
     let position = [];
-    logic.checkBorderCollision(1, 9, 19);
+    //logic.checkBorderCollision(1, 9, 19);
     position = [
       [0, 0],
       [-1, 0],
@@ -231,7 +270,7 @@ class Blocks {
     const sign = "S";
     let position = [];
     if (logic.rotation == 1) {
-      logic.checkBorderCollision(1, 8, 19);
+      //logic.checkBorderCollision(1, 8, 19);
       position = [
         [0, 0],
         [0, -1],
@@ -239,7 +278,7 @@ class Blocks {
         [-1, 1],
       ];
     } else if (logic.rotation == 2) {
-      logic.checkBorderCollision(0, 8, 18);
+      //logic.checkBorderCollision(0, 8, 18);
       position = [
         [0, 0],
         [-1, 0],
@@ -247,7 +286,7 @@ class Blocks {
         [1, 1],
       ];
     } else if (logic.rotation == 3) {
-      logic.checkBorderCollision(1, 8, 18);
+      //logic.checkBorderCollision(1, 8, 18);
       position = [
         [0, 0],
         [0, 1],
@@ -255,7 +294,7 @@ class Blocks {
         [1, -1],
       ];
     } else if (logic.rotation == 4) {
-      logic.checkBorderCollision(1, 9, 18);
+      //logic.checkBorderCollision(1, 9, 18);
       position = [
         [0, 0],
         [1, 0],
@@ -274,7 +313,7 @@ class Blocks {
     const sign = "T";
     let position = [];
     if (logic.rotation == 1) {
-      logic.checkBorderCollision(1, 8, 19);
+      //logic.checkBorderCollision(1, 8, 19);
       position = [
         [0, 0],
         [0, -1],
@@ -282,7 +321,7 @@ class Blocks {
         [-1, 0],
       ];
     } else if (logic.rotation == 2) {
-      logic.checkBorderCollision(0, 8, 18);
+      //logic.checkBorderCollision(0, 8, 18);
       position = [
         [0, 0],
         [-1, 0],
@@ -290,7 +329,7 @@ class Blocks {
         [0, 1],
       ];
     } else if (logic.rotation == 3) {
-      logic.checkBorderCollision(1, 8, 18);
+      //logic.checkBorderCollision(1, 8, 18);
       position = [
         [0, 0],
         [0, 1],
@@ -298,7 +337,7 @@ class Blocks {
         [1, 0],
       ];
     } else if (logic.rotation == 4) {
-      logic.checkBorderCollision(1, 9, 18);
+      //logic.checkBorderCollision(1, 9, 18);
       position = [
         [0, 0],
         [1, 0],
@@ -317,7 +356,7 @@ class Blocks {
     const sign = "Z";
     let position = [];
     if (logic.rotation == 1) {
-      logic.checkBorderCollision(1, 8, 19);
+      //logic.checkBorderCollision(1, 8, 19);
       position = [
         [0, 0],
         [0, 1],
@@ -325,7 +364,7 @@ class Blocks {
         [-1, -1],
       ];
     } else if (logic.rotation == 2) {
-      logic.checkBorderCollision(0, 8, 18);
+      //logic.checkBorderCollision(0, 8, 18);
       position = [
         [0, 0],
         [1, 0],
@@ -333,7 +372,7 @@ class Blocks {
         [-1, 1],
       ];
     } else if (logic.rotation == 3) {
-      logic.checkBorderCollision(1, 8, 18);
+      //logic.checkBorderCollision(1, 8, 18);
       position = [
         [0, 0],
         [0, -1],
@@ -341,7 +380,7 @@ class Blocks {
         [1, 1],
       ];
     } else if (logic.rotation == 4) {
-      logic.checkBorderCollision(1, 9, 18);
+      //logic.checkBorderCollision(1, 9, 18);
       position = [
         [0, 0],
         [0, -1],
