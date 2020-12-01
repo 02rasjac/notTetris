@@ -36,7 +36,7 @@ class PlayerControl {
    */
   smash() {
     //* The fastest possible to not break collision
-    logic.speed = 14;
+    logic.speed = 18;
     this.isSmashing = true;
   }
 
