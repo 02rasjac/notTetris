@@ -29,6 +29,11 @@ function draw() {
     logic.activeTetri();
 
     logic.gravity();
+
+    // Write score etc. to the DOM.
+    document.getElementById("lines").innerHTML = logic.totalRemovedLines;
+    document.getElementById("level").innerHTML = logic.level;
+    document.getElementById("score").innerHTML = logic.score.score;
   }
 }
 

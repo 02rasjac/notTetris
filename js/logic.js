@@ -44,10 +44,10 @@ class Logic {
     };
 
     // Create the board as an array
-    this.reset();
     this.blocks = new Blocks(this);
     this.score = new Score();
     this.pc = new PlayerControl();
+    this.reset();
   }
 
   /**
@@ -147,10 +147,7 @@ class Logic {
     this.totalRemovedLines++;
     if (this.totalRemovedLines % 10 === 0 && this.totalRemovedLines > 0) {
       this.level++;
-      document.getElementById("level").innerHTML = this.level;
     }
-
-    document.getElementById("lines").innerHTML = this.totalRemovedLines;
 
     return true;
   }
@@ -319,6 +316,8 @@ class Logic {
    * Reset the game
    */
   reset() {
+    this.hasEnded = false;
+
     this.board = [];
     // Create the board as an array
     for (let i = 0; i < 20; i++) {
@@ -328,7 +327,17 @@ class Logic {
       }
       this.board.push(row);
     }
+
     this.speed = this.startingSpeed;
+
+    // Reset scoer etc
+    this.totalRemovedLines = 0;
+    this.score.score = 0;
+    this.level = 0;
+
+    // Reset tetriminos around
+    this.upcomingTetris = [];
+    this.heldTetris = "";
 
     // Initilise the upcoming tetris
     for (let i = 0; i < 4; i++) {
@@ -336,6 +345,7 @@ class Logic {
     }
 
     this.tetrimino = this.newTetri();
+    this.spawnTetri();
   }
 
   /** Calculate the speed based on the level */

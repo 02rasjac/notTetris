@@ -49,7 +49,5 @@ class Score {
     }
 
     this.score += addPoints;
-
-    document.getElementById("score").innerHTML = this.score;
   }
 }
