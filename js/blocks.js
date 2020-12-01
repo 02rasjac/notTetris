@@ -69,7 +69,6 @@ class Blocks {
 
       // Stop rotation on blocks and walls
       if ((sign !== "" || sign === undefined) && logic.rotated !== "") {
-        console.log("BLOCKED ON ROTATE");
         isBlocked = true;
         if (logic.rotated === "R") {
           logic.rotated = "";
@@ -91,7 +90,6 @@ class Blocks {
 
       // Stop movement on walls and blocks
       if ((sign !== "" || sign === undefined) && logic.moved !== "") {
-        console.log("BLOCKED ON MOVE");
         isBlocked = true;
         if (logic.moved === "L") logic.activeCol++;
         else if (logic.moved === "R") logic.activeCol--;
@@ -100,7 +98,6 @@ class Blocks {
       }
 
       if (sign !== "") {
-        console.log("BLOCKED ON BLOCK");
         isBlocked = true;
         logic.dead = true;
         logic.activeRow--;
